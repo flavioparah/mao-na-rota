@@ -1,207 +1,200 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mão na Rota - Contabilidade para Caminhoneiros</title>
-    <!-- FRAMEWORKS: Tailwind CSS para estilos e FontAwesome para ícones -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Governo do Pará — Flavio Furtado</title>
+  
+  <!-- Fontes: Inter (Sansa) e Playfair (Serif Italic) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;900&family=Playfair+Display:ital,wght@1,300&display=swap" rel="stylesheet" />
+  
+  <!-- Scripts: Tailwind CSS, Lenis (Scroll) e GSAP (Animações) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* Estilos globais e cursor */
+    :root { --bg: #030303; --fg: #ffffff; }
+    body { background-color: var(--bg); color: var(--fg); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; cursor: none; }
+
+    /* Estilo do Cursor */
+    #cursor { position: fixed; width: 8px; height: 8px; background: #fff; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
+    #cursor-follower { 
+      position: fixed; width: 40px; height: 40px; border: 1px solid white; border-radius: 50%; pointer-events: none; z-index: 9998; mix-blend-mode: difference;
+      transition: transform 0.1s ease-out; 
+    }
+
+    /* Tipografia Brutalista */
+    .giant-title { font-size: clamp(3rem, 10vw, 12rem); font-weight: 900; line-height: 0.8; letter-spacing: -0.06em; text-transform: uppercase; }
+    .serif-italic { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 300; text-transform: lowercase; }
+
+    main { position: relative; z-index: 10; }
     
-    <style>
-        :root {
-            --brand-orange: #F37021; /* Cor principal: Laranja */
-            --brand-dark: #1A1A1A;   /* Cor secundária: Preto/Cinza Escuro */
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
+    /* Estrutura dos Cards de Arte */
+    .art-card { position: relative; width: 100%; margin-bottom: 12vh; opacity: 0; transform: translateY(40px); }
+    .art-wrapper { position: relative; width: 100%; display: block; }
 
-        /* Classes utilitárias para as cores da marca */
-        .bg-orange-brand { background-color: var(--brand-orange); }
-        .text-orange-brand { color: var(--brand-orange); }
-        .border-orange-brand { border-color: var(--brand-orange); }
-        
-        /* IMAGEM DE FUNDO ATUALIZADA: caminhoneiro.png */
-        .hero-gradient {
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), 
-                        url('caminhoneiro.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Efeito parallax suave */
-        }
+    /* Garante que a imagem apareça inteira sem cortes */
+    .art-wrapper img {
+      width: 100%; 
+      height: auto; 
+      display: block;
+      border-radius: 2px;
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    /* Efeito de zoom no hover */
+    .art-card:hover img { transform: scale(1.01); }
 
-        /* Animação do botão do WhatsApp */
-        .floating-wa {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 50;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-    </style>
+    /* Legendas dos Cards */
+    .art-info {
+      padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: baseline;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Botão de voltar fixo */
+    .back-btn {
+      position: fixed; bottom: 40px; left: 40px; z-index: 100; font-size: 10px; font-weight: 900;
+      letter-spacing: 0.4em; text-transform: uppercase; padding: 15px 30px;
+      border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+      transition: all 0.3s ease; background: rgba(0,0,0,0.5);
+    }
+    .back-btn:hover { background: white; color: black; }
+
+    @media (max-width: 768px) {
+      .back-btn { left: 20px; bottom: 20px; padding: 10px 20px; }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
 
-    <!-- NAVEGAÇÃO -->
-    <nav class="sticky top-0 z-40 bg-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- LOGO: Agora utilizando explicitamente o logo.png no canto superior esquerdo -->
-            <img src="logo.png" 
-                 alt="Logo Mão na Rota" 
-                 class="h-14 w-auto object-contain" 
-                 onerror="this.src='https://via.placeholder.com/180x60?text=Mão+Na+Rota'">
-            
-            <div class="hidden md:flex space-x-6 font-semibold uppercase text-sm tracking-wider">
-                <a href="#problema" class="hover:text-orange-brand transition">O Problema</a>
-                <a href="#solucao" class="hover:text-orange-brand transition">Solução</a>
-                <a href="#precos" class="hover:text-orange-brand transition">Preços</a>
-                <a href="#parceria" class="hover:text-orange-brand transition text-gray-400">Parcerias</a>
-            </div>
+  <!-- Identificação da Página -->
+  <nav class="fixed top-0 left-0 w-full p-8 z-[100] flex justify-between items-start mix-blend-difference">
+    <div class="font-black text-xl tracking-tighter">FF / GOVERNO DO PARÁ</div>
+    <div class="text-[10px] font-black uppercase tracking-[0.5em] opacity-40">Gestão e Comunicação</div>
+  </nav>
 
-            <a href="https://wa.me/5500000000000" class="bg-orange-brand text-white px-5 py-2 rounded-full font-bold hover:brightness-110 transition">
-                Falar com IA
-            </a>
+  <!-- Botão de Voltar para a Home de Ads -->
+  <a href="ads.html" class="back-btn">Projetos</a>
+
+  <main class="px-[5vw] pt-[25vh] pb-[20vh]">
+    <!-- Título Principal -->
+    <header class="mb-[15vh]">
+      <span class="text-xs uppercase tracking-[0.6em] opacity-40 block mb-4">Case Study — Publicidade Governamental</span>
+      <h1 class="giant-title">GOVERNO DO</h1>
+      <h1 class="giant-title serif-italic">Estado do Pará</h1>
+    </header>
+
+    <!-- Grelha de Conteúdo (12 Colunas) -->
+    <div class="grid grid-cols-12 gap-x-12">
+      
+      <!-- PEÇA 1 (Larga - 7 colunas) -->
+      <!-- IMPORTANTE: As imagens agora buscam da pasta "governo/" -->
+      <div class="art-card col-span-12 md:col-span-7">
+        <div class="art-wrapper">
+          <img src="governo/campanha_saude.jpg" alt="Campanha de Saúde Governo do Pará">
         </div>
-    </nav>
-
-    <!-- SEÇÃO HERO (REMOVIDO IMAGEM DO CELULAR) -->
-    <section class="hero-gradient text-white py-32 px-4 relative overflow-hidden flex items-center justify-center text-center">
-        <div class="max-w-4xl mx-auto z-10 space-y-8">
-            <h1 class="text-5xl md:text-7xl font-black leading-tight drop-shadow-lg">
-                FACILIDADE, PÉ NA ESTRADA E <br>
-                <span class="text-orange-brand uppercase">MÃO NA ROTA.</span>
-            </h1>
-            <p class="text-xl md:text-3xl text-gray-100 max-w-3xl mx-auto font-light">
-                A contabilidade descomplicada na palma da mão do caminhoneiro. <br class="hidden md:block">
-                Regularize seu MEI e emita NF pelo WhatsApp em segundos.
-            </p>
-            <div class="flex flex-col items-center gap-6 pt-4">
-                <a href="#precos" class="bg-orange-brand text-white px-10 py-5 rounded-xl font-black text-xl hover:bg-orange-600 transition shadow-2xl hover:scale-105 transform active:scale-95">
-                    QUERO SIMPLIFICAR MINHA ROTA
-                </a>
-                <div class="flex items-center gap-2 text-sm text-gray-300">
-                    <i class="fas fa-check-circle text-green-500"></i>
-                    <span>IA integrada e suporte 24h</span>
-                </div>
-            </div>
+        <div class="art-info">
+          <h3 class="text-xl font-black uppercase tracking-tighter">Saúde por todo o Pará</h3>
+          <span class="text-[10px] opacity-40 uppercase tracking-widest">Out of Home</span>
         </div>
+      </div>
+
+      <!-- PEÇA 2 (Estreita - 5 colunas com desalinhamento) -->
+      <div class="art-card col-span-12 md:col-span-5 mt-[10vh]">
+        <div class="art-wrapper">
+          <img src="governo/campanha_educacao.jpg" alt="Campanha de Educação">
+        </div>
+        <div class="art-info">
+          <h3 class="text-xl font-black uppercase tracking-tighter">Futuro e Conhecimento</h3>
+          <span class="text-[10px] opacity-40 uppercase tracking-widest">Social Media</span>
+        </div>
+      </div>
+
+      <!-- PEÇA 3 (Layout Full - 12 colunas) -->
+      <div class="art-card col-span-12 my-[10vh]">
+        <div class="art-wrapper">
+          <img src="governo/campanha_infraestrutura.jpg" alt="Campanha de Infraestrutura">
+        </div>
+        <div class="art-info">
+          <h3 class="text-2xl font-black uppercase tracking-tighter">Obras e Integração</h3>
+          <span class="text-[10px] opacity-40 uppercase tracking-widest">Key Visual</span>
+        </div>
+      </div>
+
+      <!-- PEÇA 4 (Metade do ecrã) -->
+      <div class="art-card col-span-12 md:col-span-6">
+        <div class="art-wrapper">
+          <img src="governo/campanha_cultura.jpg" alt="Campanha de Cultura e Turismo">
+        </div>
+        <div class="art-info">
+          <h3 class="text-xl font-black uppercase tracking-tighter">Cultura e Identidade</h3>
+          <span class="text-[10px] opacity-40 uppercase tracking-widest">Branding</span>
+        </div>
+      </div>
+
+      <!-- PEÇA 5 (Metade com desalinhamento) -->
+      <div class="art-card col-span-12 md:col-span-6 mt-[15vh]">
+        <div class="art-wrapper">
+          <img src="governo/campanha_meioambiente.jpg" alt="Campanha de Meio Ambiente">
+        </div>
+        <div class="art-info">
+          <h3 class="text-xl font-black uppercase tracking-tighter">Sustentabilidade</h3>
+          <span class="text-[10px] opacity-40 uppercase tracking-widest">Estratégia Digital</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Seção de Encerramento e Navegação -->
+    <section class="mt-[20vh] text-center border-t border-white/10 pt-20">
+      <p class="text-xs uppercase tracking-[0.8em] opacity-30 mb-8">Próximo Case</p>
+      <a href="ads.html" class="text-[6vw] font-black hover:italic transition-all">VOLTAR AOS PROJETOS</a>
     </section>
 
-    <!-- O PROBLEMA -->
-    <section id="problema" class="py-20 bg-white px-4">
-        <div class="max-w-4xl mx-auto text-center space-y-6">
-            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">
-                Não deixe o Leão tomar o que você conquistou no asfalto.
-            </h2>
-            <div class="w-24 h-1.5 bg-orange-brand mx-auto rounded-full"></div>
-            <p class="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                Muitos motoristas acreditam que, por faturar até R$ 25 mil, estão livres de problemas com o IR. 
-                <strong>A verdade é cruel:</strong> se a sua declaração não for feita com precisão, você pode pagar mais de <span class="text-red-600 font-bold underline">27% de Imposto de Renda.</span>
-            </p>
-        </div>
-    </section>
+  </main>
 
-    <!-- SOLUÇÃO -->
-    <section id="solucao" class="py-20 bg-gray-900 text-white px-4">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
-            <div class="bg-gray-800 p-10 rounded-3xl border border-gray-700 hover:border-orange-brand transition group">
-                <div class="w-14 h-14 bg-orange-brand rounded-xl flex items-center justify-center mb-8 text-3xl group-hover:scale-110 transition duration-300">
-                    <i class="fas fa-fingerprint"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Identificação Automática</h3>
-                <p class="text-gray-400 text-lg">O sistema reconhece você imediatamente pela placa ou CNPJ. Sem senhas ou burocracia.</p>
-            </div>
+  <script>
+    /**
+     * INSTRUÇÕES PARA EDIÇÃO:
+     * 1. Para trocar imagens: procure por "src='governo/nome_do_arquivo.jpg'".
+     * 2. Para mudar largura: use classes do Tailwind como 'col-span-12' (total) ou 'col-span-6' (metade).
+     * 3. Os comentários no HTML indicam onde cada bloco começa e termina.
+     */
 
-            <div class="bg-gray-800 p-10 rounded-3xl border border-gray-700 hover:border-orange-brand transition group">
-                <div class="w-14 h-14 bg-orange-brand rounded-xl flex items-center justify-center mb-8 text-3xl group-hover:scale-110 transition duration-300">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Emissão de NF via Zap</h3>
-                <p class="text-gray-400 text-lg">Nossa IA confere todos os dados e emite sua nota fiscal na hora, direto na conversa.</p>
-            </div>
+    // Inicia o Scroll Suave (Lenis)
+    const lenis = new Lenis();
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
 
-            <div class="bg-gray-800 p-10 rounded-3xl border border-gray-700 hover:border-orange-brand transition group">
-                <div class="w-14 h-14 bg-orange-brand rounded-xl flex items-center justify-center mb-8 text-3xl group-hover:scale-110 transition duration-300">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Suporte & Consultoria</h3>
-                <p class="text-gray-400 text-lg">Dúvidas fiscais? Consultoria gratuita disponível 24h por dia através da nossa IA humanizada.</p>
-            </div>
-        </div>
-    </section>
+    // Lógica do Cursor Customizado
+    const cursor = document.getElementById('cursor');
+    const follower = document.getElementById('cursor-follower');
+    window.addEventListener('mousemove', (e) => {
+      gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0 });
+      gsap.to(follower, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15 });
+    });
 
-    <!-- PREÇOS -->
-    <section id="precos" class="py-20 px-4 bg-gray-50">
-        <div class="max-w-5xl mx-auto">
-            <div class="bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
-                <div class="p-10 md:p-16 flex-1">
-                    <h2 class="text-4xl font-bold mb-8 text-gray-900">O que está na rota:</h2>
-                    <ul class="space-y-6">
-                        <li class="flex items-center gap-4 text-lg">
-                            <i class="fas fa-check-circle text-orange-brand text-2xl"></i>
-                            <span>Contabilidade completa MEI Caminhoneiro</span>
-                        </li>
-                        <li class="flex items-center gap-4 text-lg">
-                            <i class="fas fa-check-circle text-orange-brand text-2xl"></i>
-                            <span>Emissão de Notas Fiscais Ilimitadas</span>
-                        </li>
-                        <li class="flex items-center gap-4 text-lg text-green-600 font-bold bg-green-50 p-2 rounded-lg">
-                            <i class="fas fa-plus-circle text-2xl"></i>
-                            <span>Declaração Anual de Graça</span>
-                        </li>
-                        <li class="flex items-center gap-4 text-lg text-blue-600 font-bold bg-blue-50 p-2 rounded-lg">
-                            <i class="fas fa-truck-moving text-2xl"></i>
-                            <span>Registro ANTT Incluso (Plus)</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="p-12 bg-orange-brand text-white text-center md:w-96 flex flex-col justify-center items-center">
-                    <p class="font-bold mb-4 uppercase tracking-tighter opacity-90">Investimento Mensal</p>
-                    <div class="flex items-baseline gap-1">
-                        <span class="text-2xl font-medium">12x</span>
-                        <div class="text-7xl font-black mb-6 tracking-tighter">R$270</div>
-                    </div>
-                    <a href="https://wa.me/5500000000000" class="w-full bg-white text-orange-brand py-5 rounded-2xl font-black text-xl hover:scale-105 transition shadow-lg mb-4">
-                        COMPRAR AGORA
-                    </a>
-                    <p class="text-sm opacity-80 italic">Regularização total da sua vida na estrada.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-white py-16 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-            <div class="text-center md:text-left">
-                <img src="logo-negativo.png" 
-                     alt="Mão na Rota" 
-                     class="h-16 mb-6 mx-auto md:mx-0 object-contain">
-                <p class="text-gray-400 text-lg font-medium">Agilidade • Confiança • Liberdade</p>
-            </div>
-            <div class="text-center md:text-right space-y-2">
-                <p class="text-gray-500">© 2026 Mão na Rota Contabilidade.</p>
-                <div class="flex gap-4 justify-center md:justify-end text-gray-400 text-sm">
-                    <a href="#" class="hover:text-orange-brand transition">Termos de Uso</a>
-                    <a href="#" class="hover:text-orange-brand transition">Privacidade</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
-    <a href="https://wa.me/5500000000000" class="floating-wa bg-green-500 text-white w-20 h-20 rounded-full flex items-center justify-center text-4xl shadow-2xl hover:scale-110 transition duration-300">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
+    // Animação de entrada das imagens conforme o Scroll
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.art-card').forEach(card => {
+      gsap.to(card, {
+        opacity: 1,
+        y: 0,
+        duration: 1.5,
+        ease: "power4.out",
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          toggleActions: "play none none none"
+        }
+      });
+    });
+  </script>
 </body>
 </html>
