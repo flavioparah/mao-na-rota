@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* CONFIGURAÇÃO DE CORES DA MARCA */
         :root {
             --brand-orange: #F37021; /* Cor principal: Laranja */
             --brand-dark: #1A1A1A;   /* Cor secundária: Preto/Cinza Escuro */
@@ -25,12 +24,13 @@
         .text-orange-brand { color: var(--brand-orange); }
         .border-orange-brand { border-color: var(--brand-orange); }
         
-        /* ESTILO DA IMAGEM DE FUNDO (HERO) */
+        /* IMAGEM DE FUNDO ATUALIZADA: caminhoneiro.jpeg */
         .hero-gradient {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), 
+                        url('caminhoneiro.jpeg');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed; /* Efeito parallax suave */
         }
 
         /* Animação do botão do WhatsApp */
@@ -50,16 +50,15 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- CABEÇALHO / NAVEGAÇÃO -->
+    <!-- NAVEGAÇÃO -->
     <nav class="sticky top-0 z-40 bg-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- EDITAR LOGO: Altere o 'src' para o caminho do seu arquivo de logo -->
-            <img src="logo.png" 
+            <!-- LOGO: Utilizando o arquivo oficial fornecido -->
+            <img src="WhatsApp Image 2026-04-14 at 11.11.08.jpeg" 
                  alt="Logo Mão na Rota" 
                  class="h-14 w-auto object-contain" 
                  onerror="this.src='https://via.placeholder.com/180x60?text=Mão+Na+Rota'">
             
-            <!-- MENU: Links internos (ancoragem) -->
             <div class="hidden md:flex space-x-6 font-semibold uppercase text-sm tracking-wider">
                 <a href="#problema" class="hover:text-orange-brand transition">O Problema</a>
                 <a href="#solucao" class="hover:text-orange-brand transition">Solução</a>
@@ -67,130 +66,140 @@
                 <a href="#parceria" class="hover:text-orange-brand transition text-gray-400">Parcerias</a>
             </div>
 
-            <!-- BOTÃO CTA (Chamada para Ação) -->
             <a href="https://wa.me/5500000000000" class="bg-orange-brand text-white px-5 py-2 rounded-full font-bold hover:brightness-110 transition">
                 Falar com IA
             </a>
         </div>
     </nav>
 
-    <!-- SECÇÃO PRINCIPAL (HERO) -->
-    <section class="hero-gradient text-white py-20 px-4 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6 z-10">
-                <h1 class="text-4xl md:text-6xl font-black leading-tight">
-                    FACILIDADE, PÉ NA ESTRADA E <span class="text-orange-brand uppercase">MÃO NA ROTA.</span>
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-200">
-                    A contabilidade descomplicada na palma da mão do caminhoneiro. Regularize seu MEI e emita NF pelo WhatsApp.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#precos" class="bg-orange-brand text-white px-8 py-4 rounded-lg font-bold text-lg text-center hover:bg-orange-600 transition shadow-lg">
-                        QUERO SIMPLIFICAR MINHA ROTA
-                    </a>
-                </div>
-            </div>
-            
-            <!-- IMAGEM LATERAL: Foto do caminhoneiro/app -->
-            <div class="relative flex justify-center">
-                <div class="rounded-2xl border-4 border-white/20 shadow-2xl overflow-hidden max-w-sm">
-                    <img src="mobile.png" 
-                         alt="Caminhoneiro usando Mão na Rota" 
-                         class="w-full h-auto" 
-                         onerror="this.src='https://via.placeholder.com/400x600?text=Mão+Na+Rota'">
+    <!-- SEÇÃO HERO (REMOVIDO IMAGEM DO CELULAR) -->
+    <section class="hero-gradient text-white py-32 px-4 relative overflow-hidden flex items-center justify-center text-center">
+        <div class="max-w-4xl mx-auto z-10 space-y-8">
+            <h1 class="text-5xl md:text-7xl font-black leading-tight drop-shadow-lg">
+                FACILIDADE, PÉ NA ESTRADA E <br>
+                <span class="text-orange-brand uppercase">MÃO NA ROTA.</span>
+            </h1>
+            <p class="text-xl md:text-3xl text-gray-100 max-w-3xl mx-auto font-light">
+                A contabilidade descomplicada na palma da mão do caminhoneiro. <br class="hidden md:block">
+                Regularize seu MEI e emita NF pelo WhatsApp em segundos.
+            </p>
+            <div class="flex flex-col items-center gap-6 pt-4">
+                <a href="#precos" class="bg-orange-brand text-white px-10 py-5 rounded-xl font-black text-xl hover:bg-orange-600 transition shadow-2xl hover:scale-105 transform active:scale-95">
+                    QUERO SIMPLIFICAR MINHA ROTA
+                </a>
+                <div class="flex items-center gap-2 text-sm text-gray-300">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    <span>IA integrada e suporte 24h</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECÇÃO: O PROBLEMA (Argumentação) -->
-    <section id="problema" class="py-16 bg-white px-4">
+    <!-- O PROBLEMA -->
+    <section id="problema" class="py-20 bg-white px-4">
         <div class="max-w-4xl mx-auto text-center space-y-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 leading-tight">
                 Não deixe o Leão tomar o que você conquistou no asfalto.
             </h2>
-            <div class="w-20 h-1 bg-orange-brand mx-auto"></div>
-            <p class="text-lg text-gray-600 leading-relaxed">
+            <div class="w-24 h-1.5 bg-orange-brand mx-auto rounded-full"></div>
+            <p class="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
                 Muitos motoristas acreditam que, por faturar até R$ 25 mil, estão livres de problemas com o IR. 
-                <strong>A verdade é cruel:</strong> se a sua declaração não for feita com precisão, você pode pagar mais de <span class="text-red-600 font-bold">27% de IR.</span>
+                <strong>A verdade é cruel:</strong> se a sua declaração não for feita com precisão, você pode pagar mais de <span class="text-red-600 font-bold underline">27% de Imposto de Renda.</span>
             </p>
         </div>
     </section>
 
-    <!-- SECÇÃO: TECNOLOGIA / SERVIÇOS -->
+    <!-- SOLUÇÃO -->
     <section id="solucao" class="py-20 bg-gray-900 text-white px-4">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
-            <!-- Item 1: Identificação -->
-            <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-orange-brand transition">
-                <div class="w-12 h-12 bg-orange-brand rounded-lg flex items-center justify-center mb-6 text-2xl">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
+            <div class="bg-gray-800 p-10 rounded-3xl border border-gray-700 hover:border-orange-brand transition group">
+                <div class="w-14 h-14 bg-orange-brand rounded-xl flex items-center justify-center mb-8 text-3xl group-hover:scale-110 transition duration-300">
                     <i class="fas fa-fingerprint"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-4">Identificação Automática</h3>
-                <p class="text-gray-400">O sistema reconhece-o pela placa ou CNPJ. Sem senhas complicadas.</p>
+                <h3 class="text-2xl font-bold mb-4">Identificação Automática</h3>
+                <p class="text-gray-400 text-lg">O sistema reconhece você imediatamente pela placa ou CNPJ. Sem senhas ou burocracia.</p>
             </div>
 
-            <!-- Item 2: Nota Fiscal -->
-            <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-orange-brand transition">
-                <div class="w-12 h-12 bg-orange-brand rounded-lg flex items-center justify-center mb-6 text-2xl">
+            <div class="bg-gray-800 p-10 rounded-3xl border border-gray-700 hover:border-orange-brand transition group">
+                <div class="w-14 h-14 bg-orange-brand rounded-xl flex items-center justify-center mb-8 text-3xl group-hover:scale-110 transition duration-300">
                     <i class="fab fa-whatsapp"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-4">Emissão de NF via Zap</h3>
-                <p class="text-gray-400">IA que confere os dados e emite a nota fiscal na hora, direto no WhatsApp.</p>
+                <h3 class="text-2xl font-bold mb-4">Emissão de NF via Zap</h3>
+                <p class="text-gray-400 text-lg">Nossa IA confere todos os dados e emite sua nota fiscal na hora, direto na conversa.</p>
             </div>
 
-            <!-- Item 3: Consultoria -->
-            <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-orange-brand transition">
-                <div class="w-12 h-12 bg-orange-brand rounded-lg flex items-center justify-center mb-6 text-2xl">
+            <div class="bg-gray-800 p-10 rounded-3xl border border-gray-700 hover:border-orange-brand transition group">
+                <div class="w-14 h-14 bg-orange-brand rounded-xl flex items-center justify-center mb-8 text-3xl group-hover:scale-110 transition duration-300">
                     <i class="fas fa-headset"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-4">Suporte & Consultoria</h3>
-                <p class="text-gray-400">Consultoria gratuita disponível 24h via IA para tirar dúvidas fiscais.</p>
+                <h3 class="text-2xl font-bold mb-4">Suporte & Consultoria</h3>
+                <p class="text-gray-400 text-lg">Dúvidas fiscais? Consultoria gratuita disponível 24h por dia através da nossa IA humanizada.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECÇÃO: PREÇOS E PACOTE -->
-    <section id="precos" class="py-20 px-4">
+    <!-- PREÇOS -->
+    <section id="precos" class="py-20 px-4 bg-gray-50">
         <div class="max-w-5xl mx-auto">
-            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
-                <!-- Lista de benefícios -->
-                <div class="p-8 md:p-12 flex-1 bg-gray-50">
-                    <h2 class="text-3xl font-bold mb-6 text-gray-900">Tudo o que precisa.</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-orange-brand"></i> Contabilidade MEI</li>
-                        <li class="flex items-center gap-3"><i class="fas fa-check text-orange-brand"></i> Emissão de NF Ilimitada</li>
-                        <li class="flex items-center gap-3 text-green-600 font-bold"><i class="fas fa-plus"></i> Declaração Anual (Grátis)</li>
-                        <li class="flex items-center gap-3 text-blue-600 font-bold"><i class="fas fa-truck"></i> Registro ANTT (Plus)</li>
+            <div class="bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
+                <div class="p-10 md:p-16 flex-1">
+                    <h2 class="text-4xl font-bold mb-8 text-gray-900">O que está na rota:</h2>
+                    <ul class="space-y-6">
+                        <li class="flex items-center gap-4 text-lg">
+                            <i class="fas fa-check-circle text-orange-brand text-2xl"></i>
+                            <span>Contabilidade completa MEI Caminhoneiro</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-lg">
+                            <i class="fas fa-check-circle text-orange-brand text-2xl"></i>
+                            <span>Emissão de Notas Fiscais Ilimitadas</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-lg text-green-600 font-bold bg-green-50 p-2 rounded-lg">
+                            <i class="fas fa-plus-circle text-2xl"></i>
+                            <span>Declaração Anual de Graça</span>
+                        </li>
+                        <li class="flex items-center gap-4 text-lg text-blue-600 font-bold bg-blue-50 p-2 rounded-lg">
+                            <i class="fas fa-truck-moving text-2xl"></i>
+                            <span>Registro ANTT Incluso (Plus)</span>
+                        </li>
                     </ul>
                 </div>
                 
-                <!-- Card de Preço (EDITAR PREÇOS AQUI) -->
-                <div class="p-12 bg-orange-brand text-white text-center md:w-80 flex flex-col justify-center">
-                    <p class="font-bold mb-2 uppercase">Pacote Completo</p>
-                    <div class="text-5xl font-black mb-6">R$270<span class="text-lg">/mês</span></div>
-                    <a href="#" class="bg-white text-orange-brand py-4 rounded-xl font-black hover:scale-105 transition">COMPRAR AGORA</a>
-                    <p class="text-xs mt-4 opacity-70 italic">Parcelado em 12x</p>
+                <div class="p-12 bg-orange-brand text-white text-center md:w-96 flex flex-col justify-center items-center">
+                    <p class="font-bold mb-4 uppercase tracking-tighter opacity-90">Investimento Mensal</p>
+                    <div class="flex items-baseline gap-1">
+                        <span class="text-2xl font-medium">12x</span>
+                        <div class="text-7xl font-black mb-6 tracking-tighter">R$270</div>
+                    </div>
+                    <a href="https://wa.me/5500000000000" class="w-full bg-white text-orange-brand py-5 rounded-2xl font-black text-xl hover:scale-105 transition shadow-lg mb-4">
+                        COMPRAR AGORA
+                    </a>
+                    <p class="text-sm opacity-80 italic">Regularização total da sua vida na estrada.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- RODAPÉ -->
-    <footer class="bg-gray-900 text-white py-12 px-4">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
             <div class="text-center md:text-left">
-                <!-- LOGO RODAPÉ: Altere aqui também -->
                 <img src="WhatsApp Image 2026-04-14 at 11.11.08.jpeg" 
                      alt="Mão na Rota" 
-                     class="h-12 mb-4 mx-auto md:mx-0 object-contain">
-                <p class="text-gray-500 text-sm">Agilidade • Confiança • Liberdade</p>
+                     class="h-16 mb-6 mx-auto md:mx-0 object-contain">
+                <p class="text-gray-400 text-lg font-medium">Agilidade • Confiança • Liberdade</p>
             </div>
-            <p class="text-sm text-gray-500">© 2026 Mão na Rota Contabilidade.</p>
+            <div class="text-center md:text-right space-y-2">
+                <p class="text-gray-500">© 2026 Mão na Rota Contabilidade.</p>
+                <div class="flex gap-4 justify-center md:justify-end text-gray-400 text-sm">
+                    <a href="#" class="hover:text-orange-brand transition">Termos de Uso</a>
+                    <a href="#" class="hover:text-orange-brand transition">Privacidade</a>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- BOTÃO FLUTUANTE DO WHATSAPP (EDITAR LINK) -->
-    <a href="https://wa.me/5500000000000" class="floating-wa bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-2xl">
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
+    <a href="https://wa.me/5500000000000" class="floating-wa bg-green-500 text-white w-20 h-20 rounded-full flex items-center justify-center text-4xl shadow-2xl hover:scale-110 transition duration-300">
         <i class="fab fa-whatsapp"></i>
     </a>
 
