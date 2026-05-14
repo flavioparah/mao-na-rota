@@ -1,270 +1,198 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2022.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mão na Rota - Contabilidade para Caminhoneiros</title>
+    <!-- FRAMEWORKS: Tailwind CSS para estilos e FontAwesome para ícones -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* CONFIGURAÇÃO DE CORES DA MARCA */
+        :root {
+            --brand-orange: #F37021; /* Cor principal: Laranja */
+            --brand-dark: #1A1A1A;   /* Cor secundária: Preto/Cinza Escuro */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Classes utilitárias para as cores da marca */
+        .bg-orange-brand { background-color: var(--brand-orange); }
+        .text-orange-brand { color: var(--brand-orange); }
+        .border-orange-brand { border-color: var(--brand-orange); }
+        
+        /* ESTILO DA IMAGEM DE FUNDO (HERO) */
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Animação do botão do WhatsApp */
+        .floating-wa {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 50;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+    </style>
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="pt-br"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Mão na Rota - Contabilidade para Caminhoneiros&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>:root {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--brand-orange: #F37021;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>--brand-dark: #1A1A1A;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>scroll-behavior: smooth;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.bg-orange-brand { background-color: var(--brand-orange); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.text-orange-brand { color: var(--brand-orange); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.border-orange-brand { border-color: var(--brand-orange); }</p>
-<p class="p2"><span class="Apple-converted-space">        </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hero-gradient {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=1920&amp;q=80');</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-size: cover;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background-position: center;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.floating-wa {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>bottom: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>right: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>z-index: 50;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>animation: pulse 2s infinite;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>@keyframes pulse {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }</p>
-<p class="p1"><span class="Apple-converted-space">            </span>100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="bg-gray-50 text-gray-800"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Navegação --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav class="sticky top-0 z-40 bg-white shadow-md"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;img src="WhatsApp Image 2026-04-14 at 11.11.08_2.jpeg" alt="Logo Mão na Rota" class="h-14 w-auto object-contain" onerror="this.src='https://via.placeholder.com/180x60?text=Mão+Na+Rota'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="hidden md:flex space-x-6 font-semibold uppercase text-sm tracking-wider"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#problema" class="hover:text-orange-brand transition"&gt;O Problema&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#solucao" class="hover:text-orange-brand transition"&gt;Solução&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#precos" class="hover:text-orange-brand transition"&gt;Preços&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#parceria" class="hover:text-orange-brand transition text-gray-400"&gt;Parcerias&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;a href="https://wa.me/5500000000000" class="bg-orange-brand text-white px-5 py-2 rounded-full font-bold hover:brightness-110 transition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Falar com IA</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Seção Hero --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="hero-gradient text-white py-20 px-4 relative overflow-hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="space-y-6 z-10"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h1 class="text-4xl md:text-6xl font-black leading-tight"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>FACILIDADE, PÉ NA ESTRADA E &lt;span class="text-orange-brand uppercase"&gt;MÃO NA ROTA.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-xl md:text-2xl text-gray-200"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>A contabilidade descomplicada na palma da mão do caminhoneiro. Regularize seu MEI e emita NF pelo WhatsApp.</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col sm:flex-row gap-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#precos" class="bg-orange-brand text-white px-8 py-4 rounded-lg font-bold text-lg text-center hover:bg-orange-600 transition shadow-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>QUERO SIMPLIFICAR MINHA ROTA</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center justify-center gap-2 text-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;i class="fas fa-shield-alt text-green-400"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;100% Seguro &amp; Homologado&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="relative flex justify-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="rounded-2xl border-4 border-white/20 shadow-2xl overflow-hidden max-w-sm"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="WhatsApp Image 2026-05-04 at 15.38.45.jpeg" alt="Publicidade Mão na Rota" class="w-full h-auto" onerror="this.src='https://via.placeholder.com/400x600?text=Caminhoneiro+no+WhatsApp'"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Problema (Pain Points) --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="problema" class="py-16 bg-white px-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-4xl mx-auto text-center space-y-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Não deixe o Leão tomar o que você conquistou no asfalto.</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="w-20 h-1 bg-orange-brand mx-auto"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-lg text-gray-600 leading-relaxed"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Muitos motoristas acreditam que, por faturar até R$ 25 mil, estão livres de problemas com o IR.<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;strong&gt;A verdade é cruel:&lt;/strong&gt; se a sua declaração não for feita com precisão cirúrgica, você pode acabar pagando mais de &lt;span class="text-red-600 font-bold"&gt;27% de Imposto de Renda.&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid md:grid-cols-2 gap-6 pt-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-red-50 p-6 rounded-xl border-l-4 border-red-500 text-left"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="font-bold text-red-700"&gt;O Risco:&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm"&gt;Multas retroativas e bloqueio de CNPJ por erro na declaração MEI (teto 200k/ano).&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-green-50 p-6 rounded-xl border-l-4 border-green-500 text-left"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="font-bold text-green-700"&gt;A Solução:&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-sm"&gt;Planejamento tributário inteligente que protege o seu lucro bruto.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Solução / Tecnologia --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="solucao" class="py-20 bg-gray-900 text-white px-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="col-span-full text-center mb-10"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-3xl font-bold"&gt;Atendimento Inteligente. Reconhecimento Imediato.&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-400 mt-2"&gt;Tecnologia humana que entende a vida na estrada.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">            </span></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-orange-brand transition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="w-12 h-12 bg-orange-brand rounded-lg flex items-center justify-center mb-6 text-2xl"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fas fa-fingerprint"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-bold mb-4"&gt;Identificação Automática&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-400"&gt;O sistema reconhece-o imediatamente pela placa ou CNPJ. Sem senhas difíceis de lembrar.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-orange-brand transition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="w-12 h-12 bg-orange-brand rounded-lg flex items-center justify-center mb-6 text-2xl"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fab fa-whatsapp"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-bold mb-4"&gt;Emissão de NF via Zap&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-400"&gt;Envie os dados e a nossa IA confere e emite a nota na hora. Simples, rápido e sem erros.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-orange-brand transition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="w-12 h-12 bg-orange-brand rounded-lg flex items-center justify-center mb-6 text-2xl"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;i class="fas fa-headset"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 class="text-xl font-bold mb-4"&gt;Suporte &amp; Consultoria&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-400"&gt;Dúvidas sobre impostos? A nossa consultoria está disponível 24h via IA, totalmente gratuita.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Oferta / Preços --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="precos" class="py-20 px-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-5xl mx-auto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 flex flex-col md:flex-row"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-8 md:p-12 flex-1 bg-gray-50"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 class="text-3xl font-bold mb-6"&gt;Tudo o que precisa em uma única parada.&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ul class="space-y-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li class="flex items-center gap-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-check-circle text-orange-brand text-xl"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;Gestão de Contabilidade MEI Caminhoneiro&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li class="flex items-center gap-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-check-circle text-orange-brand text-xl"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;Emissão de Notas Fiscais Ilimitadas&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li class="flex items-center gap-3 text-green-600 font-semibold"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-gift text-xl"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;Declaração Anual IRPJ (BÔNUS)&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li class="flex items-center gap-3 text-blue-600 font-semibold"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-star text-xl"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;Registro ANTT (PLUS)&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li class="flex items-center gap-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;i class="fas fa-check-circle text-orange-brand text-xl"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span&gt;Consultoria com IA Humanizada&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-12 bg-orange-brand text-white text-center flex flex-col justify-center items-center md:w-80"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="uppercase font-bold tracking-widest mb-4"&gt;Plano Anual&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-xl"&gt;12x de&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="text-6xl font-black"&gt;R$270&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-sm opacity-80"&gt;no cartão ou boleto&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="w-full bg-white text-orange-brand py-4 rounded-xl font-black text-lg hover:scale-105 transition shadow-lg"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>COMPRAR AGORA</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-xs mt-4 opacity-70 italic"&gt;Satisfação garantida ou seu dinheiro de volta.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Para Empresas / Ecossistema --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="parceria" class="py-16 bg-gray-100 px-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white p-8 md:p-12 rounded-2xl shadow-lg border-t-8 border-orange-brand"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="grid md:grid-cols-2 gap-12 items-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="bg-orange-100 text-orange-brand px-3 py-1 rounded text-xs font-bold uppercase"&gt;Para Transportadoras&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h2 class="text-3xl font-bold mt-4 mb-6"&gt;Segurança e Reputação para quem contrata.&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-600 text-lg mb-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>O Mão na Rota não é apenas para o motorista. Criamos uma &lt;strong&gt;Lista de Confiança&lt;/strong&gt;: tenha acesso a profissionais em total compliance burocrático.</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="space-y-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-start gap-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="bg-orange-brand text-white p-2 rounded"&gt;01&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p&gt;&lt;strong&gt;Compliance Zero Erro:&lt;/strong&gt; Motoristas com impostos e ANTT 100% em dia.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="flex items-start gap-3"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="bg-orange-brand text-white p-2 rounded"&gt;02&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p&gt;&lt;strong&gt;Agilidade no Fluxo:&lt;/strong&gt; Organizamos a papelada para você não perder tempo.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-gray-50 p-8 rounded-xl border border-dashed border-gray-300 text-center"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;i class="fas fa-handshake text-6xl text-orange-brand mb-6"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-bold mb-4"&gt;Seja um Parceiro do Ecossistema&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-500 mb-6"&gt;Integre sua frota ou encontre os melhores profissionais certificados pelo Mão na Rota.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button class="border-2 border-orange-brand text-orange-brand px-6 py-2 rounded-lg font-bold hover:bg-orange-brand hover:text-white transition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                            </span>Saiba Mais</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Footer --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="bg-gray-900 text-white py-12 px-4 border-t border-gray-800"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center md:text-left"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;img src="WhatsApp Image 2026-04-14 at 11.11.08_2.jpeg" alt="Mão na Rota" class="h-16 mb-4 mx-auto md:mx-0 object-contain"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-500"&gt;Agilidade • Confiança • Liberdade&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex space-x-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#" class="hover:text-orange-brand text-2xl"&gt;&lt;i class="fab fa-instagram"&gt;&lt;/i&gt;&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#" class="hover:text-orange-brand text-2xl"&gt;&lt;i class="fab fa-facebook"&gt;&lt;/i&gt;&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="#" class="hover:text-orange-brand text-2xl"&gt;&lt;i class="fab fa-linkedin"&gt;&lt;/i&gt;&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-sm text-gray-500 text-center md:text-right"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;© 2026 Mão na Rota Contabilidade. Todos os direitos reservados.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mt-2 space-x-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="hover:underline"&gt;Termos&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="hover:underline"&gt;Privacidade&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#" class="hover:underline"&gt;Suporte&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Botão Flutuante WhatsApp --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;a href="https://wa.me/5500000000000" class="floating-wa bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-2xl"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;i class="fab fa-whatsapp"&gt;&lt;/i&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/a&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- CABEÇALHO / NAVEGAÇÃO -->
+    <nav class="sticky top-0 z-40 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- EDITAR LOGO: Altere o 'src' para o caminho do seu arquivo de logo -->
+            <img src="WhatsApp Image 2026-04-14 at 11.11.08.jpeg" 
+                 alt="Logo Mão na Rota" 
+                 class="h-14 w-auto object-contain" 
+                 onerror="this.src='https://via.placeholder.com/180x60?text=Mão+Na+Rota'">
+            
+            <!-- MENU: Links internos (ancoragem) -->
+            <div class="hidden md:flex space-x-6 font-semibold uppercase text-sm tracking-wider">
+                <a href="#problema" class="hover:text-orange-brand transition">O Problema</a>
+                <a href="#solucao" class="hover:text-orange-brand transition">Solução</a>
+                <a href="#precos" class="hover:text-orange-brand transition">Preços</a>
+                <a href="#parceria" class="hover:text-orange-brand transition text-gray-400">Parcerias</a>
+            </div>
+
+            <!-- BOTÃO CTA (Chamada para Ação) -->
+            <a href="https://wa.me/5500000000000" class="bg-orange-brand text-white px-5 py-2 rounded-full font-bold hover:brightness-110 transition">
+                Falar com IA
+            </a>
+        </div>
+    </nav>
+
+    <!-- SECÇÃO PRINCIPAL (HERO) -->
+    <section class="hero-gradient text-white py-20 px-4 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6 z-10">
+                <h1 class="text-4xl md:text-6xl font-black leading-tight">
+                    FACILIDADE, PÉ NA ESTRADA E <span class="text-orange-brand uppercase">MÃO NA ROTA.</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-200">
+                    A contabilidade descomplicada na palma da mão do caminhoneiro. Regularize seu MEI e emita NF pelo WhatsApp.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#precos" class="bg-orange-brand text-white px-8 py-4 rounded-lg font-bold text-lg text-center hover:bg-orange-600 transition shadow-lg">
+                        QUERO SIMPLIFICAR MINHA ROTA
+                    </a>
+                </div>
+            </div>
+            
+            <!-- IMAGEM LATERAL: Foto do caminhoneiro/app -->
+            <div class="relative flex justify-center">
+                <div class="rounded-2xl border-4 border-white/20 shadow-2xl overflow-hidden max-w-sm">
+                    <img src="WhatsApp Image 2026-05-04 at 15.38.45.jpeg" 
+                         alt="Caminhoneiro usando Mão na Rota" 
+                         class="w-full h-auto" 
+                         onerror="this.src='https://via.placeholder.com/400x600?text=Mão+Na+Rota'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECÇÃO: O PROBLEMA (Argumentação) -->
+    <section id="problema" class="py-16 bg-white px-4">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+                Não deixe o Leão tomar o que você conquistou no asfalto.
+            </h2>
+            <div class="w-20 h-1 bg-orange-brand mx-auto"></div>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Muitos motoristas acreditam que, por faturar até R$ 25 mil, estão livres de problemas com o IR. 
+                <strong>A verdade é cruel:</strong> se a sua declaração não for feita com precisão, você pode pagar mais de <span class="text-red-600 font-bold">27% de IR.</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- SECÇÃO: TECNOLOGIA / SERVIÇOS -->
+    <section id="solucao" class="py-20 bg-gray-900 text-white px-4">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+            <!-- Item 1: Identificação -->
+            <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-orange-brand transition">
+                <div class="w-12 h-12 bg-orange-brand rounded-lg flex items-center justify-center mb-6 text-2xl">
+                    <i class="fas fa-fingerprint"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Identificação Automática</h3>
+                <p class="text-gray-400">O sistema reconhece-o pela placa ou CNPJ. Sem senhas complicadas.</p>
+            </div>
+
+            <!-- Item 2: Nota Fiscal -->
+            <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-orange-brand transition">
+                <div class="w-12 h-12 bg-orange-brand rounded-lg flex items-center justify-center mb-6 text-2xl">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Emissão de NF via Zap</h3>
+                <p class="text-gray-400">IA que confere os dados e emite a nota fiscal na hora, direto no WhatsApp.</p>
+            </div>
+
+            <!-- Item 3: Consultoria -->
+            <div class="bg-gray-800 p-8 rounded-2xl border border-gray-700 hover:border-orange-brand transition">
+                <div class="w-12 h-12 bg-orange-brand rounded-lg flex items-center justify-center mb-6 text-2xl">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Suporte & Consultoria</h3>
+                <p class="text-gray-400">Consultoria gratuita disponível 24h via IA para tirar dúvidas fiscais.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECÇÃO: PREÇOS E PACOTE -->
+    <section id="precos" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
+                <!-- Lista de benefícios -->
+                <div class="p-8 md:p-12 flex-1 bg-gray-50">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-900">Tudo o que precisa.</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-orange-brand"></i> Contabilidade MEI</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-orange-brand"></i> Emissão de NF Ilimitada</li>
+                        <li class="flex items-center gap-3 text-green-600 font-bold"><i class="fas fa-plus"></i> Declaração Anual (Grátis)</li>
+                        <li class="flex items-center gap-3 text-blue-600 font-bold"><i class="fas fa-truck"></i> Registro ANTT (Plus)</li>
+                    </ul>
+                </div>
+                
+                <!-- Card de Preço (EDITAR PREÇOS AQUI) -->
+                <div class="p-12 bg-orange-brand text-white text-center md:w-80 flex flex-col justify-center">
+                    <p class="font-bold mb-2 uppercase">Pacote Completo</p>
+                    <div class="text-5xl font-black mb-6">R$270<span class="text-lg">/mês</span></div>
+                    <a href="#" class="bg-white text-orange-brand py-4 rounded-xl font-black hover:scale-105 transition">COMPRAR AGORA</a>
+                    <p class="text-xs mt-4 opacity-70 italic">Parcelado em 12x</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <!-- LOGO RODAPÉ: Altere aqui também -->
+                <img src="WhatsApp Image 2026-04-14 at 11.11.08.jpeg" 
+                     alt="Mão na Rota" 
+                     class="h-12 mb-4 mx-auto md:mx-0 object-contain">
+                <p class="text-gray-500 text-sm">Agilidade • Confiança • Liberdade</p>
+            </div>
+            <p class="text-sm text-gray-500">© 2026 Mão na Rota Contabilidade.</p>
+        </div>
+    </footer>
+
+    <!-- BOTÃO FLUTUANTE DO WHATSAPP (EDITAR LINK) -->
+    <a href="https://wa.me/5500000000000" class="floating-wa bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-2xl">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
 </body>
 </html>
