@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,10 +24,13 @@
         .text-orange-brand { color: var(--brand-orange); }
         .border-orange-brand { border-color: var(--brand-orange); }
         
-        /* IMAGEM DE FUNDO ATUALIZADA: caminhoneiro.jpeg */
+        /* =========================================================================
+           👉 IMAGEM DE FUNDO DO HERO (TÍTULO E SUBTÍTULO)
+           Atualizado para o link RAW do seu GitHub (caminhoneiro.png)
+           ========================================================================= */
         .hero-gradient {
             background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), 
-                        url('caminhoneiro.jpeg');
+                        url('https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/caminhoneiro.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed; /* Efeito parallax suave */
@@ -57,24 +60,25 @@
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             
             <!-- ==========================================
-                 ESPAÇO DEDICADO PARA O LOGOTIPO EM PNG (logo.png)
+                 👉 LOGÓTIPO PRINCIPAL (logo.png)
+                 Atualizado com o link RAW do seu GitHub
                  ========================================== -->
             <div class="flex items-center justify-start min-w-[150px] min-h-[56px]">
-                <img src="logo.png" 
+                <img src="https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/logo.png" 
                      alt="Logo Mão na Rota" 
                      class="h-14 w-auto object-contain max-w-[200px] block" 
-                     onerror="https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/logo.png">
+                     onerror="this.src='https://via.placeholder.com/180x60?text=Mão+Na+Rota+Logo+PNG'">
             </div>
             
             <div class="hidden md:flex space-x-6 font-semibold uppercase text-sm tracking-wider">
                 <a href="#problema" class="hover:text-orange-brand transition">O Problema</a>
                 <a href="#solucao" class="hover:text-orange-brand transition">Diferenciais</a>
                 <a href="#precos" class="hover:text-orange-brand transition">Preços</a>
-                <a href="#parceria" class="hover:text-orange-brand transition">Ecosistema/Parcerias</a>
+                <a href="#parceria" class="hover:text-orange-brand transition">Ecossistema/Parcerias</a>
                 <a href="#faq" class="hover:text-orange-brand transition text-gray-500">Dúvidas (FAQ)</a>
             </div>
 
-            <!-- EDITAR LINK WHATSAPP: Altere o número de telefone no href -->
+            <!-- LINK DO WHATSAPP DO CONSULTOR -->
             <a href="https://wa.me/5512999999999?text=Olá! Gostaria de entender como funciona a Mão na Rota." class="bg-orange-brand text-white px-5 py-2 rounded-full font-bold hover:brightness-110 transition text-sm">
                 Falar com Consultor
             </a>
@@ -95,7 +99,6 @@
                 Regularize seu MEI e emita NF pelo WhatsApp em segundos.
             </p>
             <div class="flex flex-col items-center gap-6 pt-4">
-                <!-- EDITAR LINK DO BOTÃO DE COMPRA: Altere para sua página de checkout ou whatsapp -->
                 <a href="#precos" class="bg-orange-brand text-white px-10 py-5 rounded-xl font-black text-xl hover:bg-orange-600 transition shadow-2xl hover:scale-105 transform active:scale-95">
                     QUERO SIMPLIFICAR MINHA ROTA
                 </a>
@@ -134,7 +137,7 @@
             </div>
 
             <div class="grid md:grid-cols-3 gap-10">
-                <!-- Diferencial 1: Emissão Descomplicada -->
+                <!-- Diferencial 1 -->
                 <div class="bg-gray-800 p-10 rounded-3xl border border-gray-700 hover:border-orange-brand transition group">
                     <div class="w-14 h-14 bg-orange-brand rounded-xl flex items-center justify-center mb-8 text-3xl group-hover:scale-110 transition duration-300">
                         <i class="fab fa-whatsapp"></i>
@@ -143,7 +146,7 @@
                     <p class="text-gray-400 text-lg">Contabilidades comuns oferecem sistemas complexos que você mesmo precisa operar. Na Mão na Rota, você envia os dados no WhatsApp, nossa IA confere e emite a nota na hora.</p>
                 </div>
 
-                <!-- Diferencial 2: Proteção no Imposto de Renda -->
+                <!-- Diferencial 2 -->
                 <div class="bg-gray-800 p-10 rounded-3xl border border-gray-700 hover:border-orange-brand transition group">
                     <div class="w-14 h-14 bg-orange-brand rounded-xl flex items-center justify-center mb-8 text-3xl group-hover:scale-110 transition duration-300">
                         <i class="fas fa-shield-alt"></i>
@@ -152,7 +155,7 @@
                     <p class="text-gray-400 text-lg">Fazemos a captação de todas as suas notas de combustível, peças e manutenção para fins de distribuição de lucros isentos de IRPF, poupando o seu patrimônio.</p>
                 </div>
 
-                <!-- Diferencial 3: Suporte 24h no Trecho -->
+                <!-- Diferencial 3 -->
                 <div class="bg-gray-800 p-10 rounded-3xl border border-gray-700 hover:border-orange-brand transition group">
                     <div class="w-14 h-14 bg-orange-brand rounded-xl flex items-center justify-center mb-8 text-3xl group-hover:scale-110 transition duration-300">
                         <i class="fas fa-headset"></i>
@@ -209,7 +212,6 @@
                         <span class="text-2xl font-semibold">R$</span>
                         <div class="text-7xl font-black mb-6 tracking-tighter">179,90</div>
                     </div>
-                    <!-- EDITAR BOTÃO COMPRAR AGORA: Insira seu link de cobrança/whatsapp -->
                     <a href="https://wa.me/5512999999999?text=Quero contratar o plano mensal de R$179,90." class="w-full bg-white text-orange-brand py-5 rounded-2xl font-black text-xl hover:scale-105 transition shadow-lg mb-4">
                         COMPRAR PLANO
                     </a>
@@ -254,7 +256,6 @@
                 <h3 class="text-2xl font-bold">Solicite Acesso à Lista de Confiança</h3>
                 <p class="text-gray-400">Preencha os dados da sua empresa abaixo e receba acesso à lista de profissionais em compliance contábil e regularizados.</p>
                 
-                <!-- FORMULÁRIO DE CONTATO (Parcerias / Transportadoras) -->
                 <form onsubmit="alert('Obrigado pelo contato! Nossa equipe de parcerias retornará com a liberação de acesso aos caminhoneiros certificados da Lista de Confiança.'); return false;" class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-300">Nome da Transportadora / Empresa</label>
@@ -283,7 +284,6 @@
             </div>
 
             <div class="space-y-4">
-                
                 <!-- FAQ 1 -->
                 <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
                     <button class="w-full px-6 py-4 bg-gray-50 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-100 transition" onclick="toggleFaq(1)">
@@ -349,10 +349,14 @@
     <footer class="bg-gray-900 text-white py-16 px-4">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
             <div class="text-center md:text-left">
-                <img src="logo.png" 
+                <!-- =========================================================================
+                   👉 LOGÓTIPO NEGATIVO NO RODAPÉ (logo-negativo.png)
+                   Atualizado com o link RAW do seu GitHub
+                   ========================================================================= -->
+                <img src="https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/logo-negativo.png" 
                      alt="Mão na Rota" 
                      class="h-16 mb-6 mx-auto md:mx-0 object-contain"
-                     onerror="this.src='https://via.placeholder.com/180x60?text=Mão+Na+Rota'">
+                     onerror="this.src='https://via.placeholder.com/180x60?text=Mão+Na+Rota+Negativo'">
                 <p class="text-gray-400 text-lg font-medium">Agilidade • Confiança • Liberdade</p>
             </div>
             <div class="text-center md:text-right space-y-2">
