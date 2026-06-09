@@ -26,10 +26,11 @@
         
         /* =========================================================================
            👉 DESIGN REFORÇADO DE BACKGROUND (HERO)
-           Utiliza degradê moderno como fallback imediato enquanto a imagem carrega.
+           OPACIDADE AJUSTADA: Reduzida de 0.95 para 0.40/0.60 para dar mais destaque
+           à imagem do caminhoneiro ao fundo, mantendo a legibilidade do texto.
            ========================================================================= */
         .hero-gradient {
-            background: linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(38,38,38,0.9) 100%), 
+            background: linear-gradient(135deg, rgba(26,26,26,0.4) 0%, rgba(26,26,26,0.6) 100%), 
                         url('caminhoneiro.png'); /* Caminho Local como prioritário */
             background-size: cover;
             background-position: center;
@@ -39,7 +40,7 @@
 
         /* Classe secundária para fallback caso a imagem local falhe */
         .hero-gradient-fallback {
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), 
+            background: linear-gradient(135deg, rgba(26,26,26,0.4) 0%, rgba(26,26,26,0.6) 100%), 
                         url('https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/caminhoneiro.png') !important;
             background-size: cover !important;
             background-position: center !important;
@@ -429,20 +430,6 @@
                         <span class="text-2xl font-black tracking-tight text-gray-900 uppercase">Mão na <span class="text-orange-500">Rota</span></span>
                     </div>
                 `;
-            }
-        }
-
-        function replaceFooterLogoWithText() {
-            const container = document.getElementById('footer-logo-container');
-            const logoImg = document.getElementById('footer-logo');
-            if (container && logoImg) {
-                logoImg.remove();
-                const fallbackDiv = document.createElement('div');
-                fallbackDiv.className = "text-left mb-6";
-                fallbackDiv.innerHTML = `
-                    <span class="text-3xl font-black text-white uppercase tracking-tight">Mão na <span class="text-orange-500">Rota</span></span>
-                `;
-                container.prepend(fallbackDiv);
             }
         }
 
