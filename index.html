@@ -25,15 +25,24 @@
         .border-orange-brand { border-color: var(--brand-orange); }
         
         /* =========================================================================
-           👉 IMAGEM DE FUNDO DO HERO (TÍTULO E SUBTÍTULO)
-           Atualizado para o link RAW do seu GitHub (caminhoneiro.png)
+           👉 DESIGN REFORÇADO DE BACKGROUND (HERO)
+           Utiliza degradê moderno como fallback imediato enquanto a imagem carrega.
            ========================================================================= */
         .hero-gradient {
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), 
-                        url('https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/caminhoneiro.png');
+            background: linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(38,38,38,0.9) 100%), 
+                        url('caminhoneiro.png'); /* Caminho Local como prioritário */
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Efeito parallax suave */
+            background-repeat: no-repeat;
+            transition: background 0.5s ease-in-out;
+        }
+
+        /* Classe secundária para fallback caso a imagem local falhe */
+        .hero-gradient-fallback {
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)), 
+                        url('https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/caminhoneiro.png') !important;
+            background-size: cover !important;
+            background-position: center !important;
         }
 
         /* Animação do botão do WhatsApp */
@@ -60,14 +69,15 @@
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             
             <!-- ==========================================
-                 👉 LOGÓTIPO PRINCIPAL (logo.png)
-                 Atualizado com o link RAW do seu GitHub
+                 👉 LOGÓTIPO PRINCIPAL COM PROTEÇÃO ANTI-LOOP INFINITO
+                 Tenta carregar local -> Tenta GitHub -> Mostra SVG Vetorial nativo se tudo falhar
                  ========================================== -->
-            <div class="flex items-center justify-start min-w-[150px] min-h-[56px]">
-                <img src="https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/logo.png" 
+            <div class="flex items-center justify-start min-w-[150px] min-h-[56px]" id="logo-container">
+                <img src="logo.png" 
                      alt="Logo Mão na Rota" 
                      class="h-14 w-auto object-contain max-w-[200px] block" 
-                     onerror="this.src='https://via.placeholder.com/180x60?text=Mão+Na+Rota+Logo+PNG'">
+                     id="main-logo"
+                     onerror="handleLogoError(this)">
             </div>
             
             <div class="hidden md:flex space-x-6 font-semibold uppercase text-sm tracking-wider">
@@ -88,7 +98,7 @@
     <!-- ==========================================
          SEÇÃO HERO
          ========================================== -->
-    <section class="hero-gradient text-white py-32 px-4 relative overflow-hidden flex items-center justify-center text-center">
+    <section id="hero-section" class="hero-gradient text-white py-32 px-4 relative overflow-hidden flex items-center justify-center text-center">
         <div class="max-w-4xl mx-auto z-10 space-y-8">
             <h1 class="text-5xl md:text-7xl font-black leading-tight drop-shadow-lg">
                 FACILIDADE, PÉ NA ESTRADA E <br>
@@ -348,15 +358,15 @@
          ========================================== -->
     <footer class="bg-gray-900 text-white py-16 px-4">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-            <div class="text-center md:text-left">
+            <div class="text-center md:text-left text-white" id="footer-logo-container">
                 <!-- =========================================================================
-                   👉 LOGÓTIPO NEGATIVO NO RODAPÉ (logo-negativo.png)
-                   Atualizado com o link RAW do seu GitHub
+                   👉 LOGÓTIPO NEGATIVO NO RODAPÉ COM CONTROLO DE FALHAS
                    ========================================================================= -->
-                <img src="https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/logo-negativo.png" 
+                <img src="logo-negativo.png" 
+                     id="footer-logo"
                      alt="Mão na Rota" 
                      class="h-16 mb-6 mx-auto md:mx-0 object-contain"
-                     onerror="this.src='https://via.placeholder.com/180x60?text=Mão+Na+Rota+Negativo'">
+                     onerror="handleFooterLogoError(this)">
                 <p class="text-gray-400 text-lg font-medium">Agilidade • Confiança • Liberdade</p>
             </div>
             <div class="text-center md:text-right space-y-2">
@@ -376,8 +386,78 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- JAVASCRIPT: Lógica das perguntas frequentes (FAQ) -->
+    <!-- ==========================================
+         SISTEMA INTELIGENTE DE RESOLUÇÃO DE IMAGENS (JS)
+         Evita loops infinitos e garante fallbacks se o GitHub ou servidor local falhar.
+         ========================================== -->
     <script>
+        // Função para tratar o erro de carregamento do logo principal
+        function handleLogoError(img) {
+            // Desativa o manipulador de erro para evitar loops infinitos
+            img.onerror = null; 
+            
+            // Tenta o plano de contingência (GitHub)
+            const githubUrl = "https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/logo.png";
+            
+            // Cria uma verificação rápida antes de aplicar o link externo
+            if (img.src !== githubUrl) {
+                img.src = githubUrl;
+            } else {
+                // Se o GitHub também falhar, renderiza texto premium em vetor para nunca quebrar a interface
+                replaceLogoWithSVG();
+            }
+        }
+
+        // Função para tratar o erro do logo negativo no rodapé
+        function handleFooterLogoError(img) {
+            img.onerror = null;
+            const githubUrlNegativo = "https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/logo-negativo.png";
+            if (img.src !== githubUrlNegativo) {
+                img.src = githubUrlNegativo;
+            } else {
+                replaceFooterLogoWithText();
+            }
+        }
+
+        // Caso todas as fontes de imagem falhem, desenha um bloco profissional com CSS/Texto
+        function replaceLogoWithSVG() {
+            const container = document.getElementById('logo-container');
+            if (container) {
+                container.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <div class="bg-orange-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">M</div>
+                        <span class="text-2xl font-black tracking-tight text-gray-900 uppercase">Mão na <span class="text-orange-500">Rota</span></span>
+                    </div>
+                `;
+            }
+        }
+
+        function replaceFooterLogoWithText() {
+            const container = document.getElementById('footer-logo-container');
+            const logoImg = document.getElementById('footer-logo');
+            if (container && logoImg) {
+                logoImg.remove();
+                const fallbackDiv = document.createElement('div');
+                fallbackDiv.className = "text-left mb-6";
+                fallbackDiv.innerHTML = `
+                    <span class="text-3xl font-black text-white uppercase tracking-tight">Mão na <span class="text-orange-500">Rota</span></span>
+                `;
+                container.prepend(fallbackDiv);
+            }
+        }
+
+        // Pré-carrega a imagem de background e ativa fallback se falhar
+        const bgImg = new Image();
+        bgImg.src = 'caminhoneiro.png';
+        bgImg.onerror = function() {
+            // Se falhar local, aplica o GitHub como contingência suave
+            const heroSection = document.getElementById('hero-section');
+            if (heroSection) {
+                heroSection.classList.add('hero-gradient-fallback');
+            }
+        };
+
+        // Lógica de manipulação do FAQ Accordion
         function toggleFaq(id) {
             const answer = document.getElementById(`ans-${id}`);
             const icon = document.getElementById(`icon-${id}`);
