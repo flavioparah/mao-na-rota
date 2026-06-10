@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Central de Ajuda & FAQ - Mão na Rota</title>
-    <!-- FRAMEWORKS: Tailwind CSS para estilos e FontAwesome para ícones -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -32,17 +31,37 @@
             color: white;
             border-color: var(--brand-orange);
         }
+
+        /* Animação do Botão Pulsante do WhatsApp Fixo */
+        @keyframes pulse-whatsapp {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+        
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 50;
+            animation: pulse-whatsapp 2s infinite;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen relative">
 
-    <!-- ==========================================
-         CABEÇALHO / NAVEGAÇÃO
-         ========================================== -->
     <nav class="sticky top-0 z-40 bg-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             
-            <!-- Logotipo Oficial integrado ao seu servidor/GitHub -->
             <div class="flex items-center justify-start min-w-[150px] min-h-[56px]">
                 <a href="index.html">
                     <img src="logo.png" 
@@ -56,8 +75,8 @@
                 <a href="index.html#problema" class="hover:text-orange-brand transition">O Problema</a>
                 <a href="index.html#solucao" class="hover:text-orange-brand transition">Diferenciais</a>
                 <a href="index.html#precos" class="hover:text-orange-brand transition">Preços</a>
-                <a href="index.html#parceria" class="hover:text-orange-brand transition">Ecossistema</a>
-                <a href="index.html" class="text-orange-brand font-bold transition border-b-2 border-orange-brand">Voltar ao Site</a>
+                <a href="index.html#parceria" class="hover:text-orange-brand transition">Ecossistema/Parcerias</a>
+                <a href="faq.html" class="text-orange-brand font-bold transition border-b-2 border-orange-brand">Dúvidas (FAQ)</a>
             </div>
 
             <a href="https://wa.me/5512999999999?text=Olá! Gostaria de tirar algumas dúvidas sobre a contabilidade Mão na Rota." class="bg-orange-brand text-white px-5 py-2 rounded-full font-bold hover:brightness-110 transition text-sm">
@@ -66,16 +85,12 @@
         </div>
     </nav>
 
-    <!-- ==========================================
-         HERO DA CENTRAL DE AJUDA & BUSCA
-         ========================================== -->
     <section class="bg-gray-900 text-white py-16 px-4 text-center relative">
         <div class="max-w-3xl mx-auto space-y-6">
             <span class="text-orange-brand font-bold uppercase tracking-wider text-sm">Suporte no Trecho</span>
             <h1 class="text-3xl md:text-5xl font-black">Como podemos ajudar você hoje?</h1>
             <p class="text-gray-400 text-lg">Pesquise por termos como "MEI", "Certificado", "Imposto de Renda" ou "Trocar Contador".</p>
             
-            <!-- Barra de Pesquisa Interativa -->
             <div class="relative max-w-xl mx-auto mt-4">
                 <input type="text" id="faq-search" oninput="filterFaqs()" placeholder="Digite sua dúvida aqui..." class="w-full pl-12 pr-4 py-4 rounded-xl bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg">
                 <i class="fas fa-search absolute left-4 top-5 text-gray-400 text-lg"></i>
@@ -83,19 +98,15 @@
         </div>
     </section>
 
-    <!-- ==========================================
-         CORPO PRINCIPAL: CATEGORIAS & ACCORDIONS
-         ========================================== -->
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
         
-        <!-- Menu Lateral de Categorias (Desktop) -->
         <aside class="md:col-span-1 space-y-3">
             <h3 class="font-bold text-gray-500 uppercase tracking-widest text-xs px-3">Categorias</h3>
             <div class="flex flex-row md:flex-col overflow-x-auto md:overflow-visible gap-2 pb-3 md:pb-0">
                 <button onclick="switchCategory('institucional')" id="tab-institucional" class="category-tab active whitespace-nowrap text-left px-4 py-3 rounded-xl border border-gray-200 font-semibold text-sm w-full">
                     <i class="fas fa-building mr-2"></i> Institucional & Serviços
                 </button>
-                <button onclick="switchCategory('abertura')" id="tab-tab-abertura" class="category-tab whitespace-nowrap text-left px-4 py-3 rounded-xl border border-gray-200 font-semibold text-sm w-full">
+                <button onclick="switchCategory('abertura')" id="tab-abertura" class="category-tab whitespace-nowrap text-left px-4 py-3 rounded-xl border border-gray-200 font-semibold text-sm w-full">
                     <i class="fas fa-folder-plus mr-2"></i> Abrir MEI Caminhoneiro
                 </button>
                 <button onclick="switchCategory('troca')" id="tab-troca" class="category-tab whitespace-nowrap text-left px-4 py-3 rounded-xl border border-gray-200 font-semibold text-sm w-full">
@@ -107,19 +118,14 @@
             </div>
         </aside>
 
-        <!-- Seção de Perguntas e Respostas -->
         <section class="md:col-span-3 space-y-6">
             
-            <!-- Mensagem caso a busca não retorne resultados -->
             <div id="no-results" class="hidden text-center py-12 bg-white rounded-2xl border border-gray-100">
                 <i class="fas fa-search text-gray-300 text-5xl mb-4"></i>
                 <h4 class="text-xl font-bold">Nenhuma pergunta encontrada</h4>
                 <p class="text-gray-500 mt-2">Tente buscar por termos mais genéricos ou fale diretamente conosco.</p>
             </div>
 
-            <!-- ==========================================
-                 CATEGORIA: INSTITUCIONAL & SERVIÇOS
-                 ========================================== -->
             <div id="cat-institucional" class="faq-category space-y-4">
                 <h2 class="text-2xl font-black text-gray-900 border-b pb-2">Institucional & Serviços</h2>
                 
@@ -195,9 +201,6 @@
                 </div>
             </div>
 
-            <!-- ==========================================
-                 CATEGORIA: ABERTURA DE EMPRESA & MEI CAMINHONEIRO
-                 ========================================== -->
             <div id="cat-abertura" class="faq-category hidden space-y-4">
                 <h2 class="text-2xl font-black text-gray-900 border-b pb-2">Abrir MEI Caminhoneiro</h2>
                 
@@ -253,9 +256,6 @@
                 </div>
             </div>
 
-            <!-- ==========================================
-                 CATEGORIA: TROCAR DE CONTADOR & TRANSICÃO
-                 ========================================== -->
             <div id="cat-troca" class="faq-category hidden space-y-4">
                 <h2 class="text-2xl font-black text-gray-900 border-b pb-2">Trocar de Contador</h2>
                 
@@ -303,9 +303,6 @@
                 </div>
             </div>
 
-            <!-- ==========================================
-                 CATEGORIA: CERTIFICADO DIGITAL & LGPD
-                 ========================================== -->
             <div id="cat-certificado" class="faq-category hidden space-y-4">
                 <h2 class="text-2xl font-black text-gray-900 border-b pb-2">Certificado Digital & LGPD</h2>
                 
@@ -380,9 +377,6 @@
 
     </main>
 
-    <!-- ==========================================
-         RODAPÉ (Logótipo Negativo Oficial)
-         ========================================== -->
     <footer class="bg-gray-900 text-white py-12 px-4 border-t border-gray-800">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="text-center md:text-left text-white" id="footer-logo-container">
@@ -404,14 +398,13 @@
         </div>
     </footer>
 
-    <!-- BOTÃO FLUTUANTE DO WHATSAPP -->
-    <a href="https://wa.me/5512999999999?text=Olá! Vim da Central de Ajuda do site e gostaria de esclarecer uma dúvida." class="floating-wa bg-green-500 text-white w-20 h-20 rounded-full flex items-center justify-center text-4xl shadow-2xl hover:scale-110 transition duration-300">
+    <a href="https://wa.me/5512999999999?text=Olá! Vim da Central de Ajuda do site e gostaria de esclarecer uma dúvida." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="whatsapp-fixed bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-2xl transition duration-300 transform hover:scale-110">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- ==========================================
-         LÓGICA JAVASCRIPT: ABAS, ACCORDION E BUSCA EM TEMPO REAL
-         ========================================== -->
     <script>
         // Alternar visualização das perguntas (Accordion)
         function toggleFaq(id) {
