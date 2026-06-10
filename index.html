@@ -25,9 +25,8 @@
         .border-orange-brand { border-color: var(--brand-orange); }
         
         /* =========================================================================
-           👉 DESIGN REFORÇADO DE BACKGROUND (HERO)
-           OPACIDADE AJUSTADA: Reduzida de 0.95 para 0.40/0.60 para dar mais destaque
-           à imagem do caminhoneiro ao fundo, mantendo a legibilidade do texto.
+           👉 IMAGEM DE FUNDO DO HERO (TÍTULO E SUBTÍTULO)
+           A opacidade do degradê está ajustada para dar destaque à imagem (caminhoneiro.png).
            ========================================================================= */
         .hero-gradient {
             background: linear-gradient(135deg, rgba(26,26,26,0.4) 0%, rgba(26,26,26,0.6) 100%), 
@@ -46,22 +45,45 @@
             background-position: center !important;
         }
 
-        /* Animação do botão do WhatsApp */
-        .floating-wa {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 50;
-            animation: pulse 2s infinite;
+        /* Efeito de hover suave nas abas de categorias da seção FAQ */
+        .category-tab {
+            transition: all 0.3s ease;
         }
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        .category-tab.active {
+            background-color: var(--brand-orange);
+            color: white;
+            border-color: var(--brand-orange);
+        }
+
+        /* =========================================================================
+           👉 BOTÃO FLUTUANTE DO WHATSAPP FIXO COM EFEITO DE PULSO
+           Evita quebra de layouts ou deformações no rodapé.
+           ========================================================================= */
+        @keyframes pulse-whatsapp {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+        
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 50;
+            animation: pulse-whatsapp 2s infinite;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen relative">
 
     <!-- ==========================================
          CABEÇALHO / NAVEGAÇÃO
@@ -69,10 +91,7 @@
     <nav class="sticky top-0 z-40 bg-white shadow-md">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             
-            <!-- ==========================================
-                 👉 LOGÓTIPO PRINCIPAL COM PROTEÇÃO ANTI-LOOP INFINITO
-                 Tenta carregar local -> Tenta GitHub -> Mostra SVG Vetorial nativo se tudo falhar
-                 ========================================== -->
+            <!-- Espaço do Logo principal com controle anti-loop de falhas -->
             <div class="flex items-center justify-start min-w-[150px] min-h-[56px]" id="logo-container">
                 <img src="logo.png" 
                      alt="Logo Mão na Rota" 
@@ -81,12 +100,13 @@
                      onerror="handleLogoError(this)">
             </div>
             
+            <!-- Menu do Topo apontando para as âncoras da mesma página -->
             <div class="hidden md:flex space-x-6 font-semibold uppercase text-sm tracking-wider">
                 <a href="#problema" class="hover:text-orange-brand transition">O Problema</a>
                 <a href="#solucao" class="hover:text-orange-brand transition">Diferenciais</a>
                 <a href="#precos" class="hover:text-orange-brand transition">Preços</a>
                 <a href="#parceria" class="hover:text-orange-brand transition">Ecossistema/Parcerias</a>
-                <a href="#faq" class="hover:text-orange-brand transition text-gray-500">Dúvidas (FAQ)</a>
+                <a href="#faq" class="hover:text-orange-brand transition">Dúvidas (FAQ)</a>
             </div>
 
             <!-- LINK DO WHATSAPP DO CONSULTOR -->
@@ -97,7 +117,7 @@
     </nav>
 
     <!-- ==========================================
-         SEÇÃO HERO
+         SEÇÃO HERO (Fundo ajustado com caminhoneiro.png)
          ========================================== -->
     <section id="hero-section" class="hero-gradient text-white py-32 px-4 relative overflow-hidden flex items-center justify-center text-center">
         <div class="max-w-4xl mx-auto z-10 space-y-8">
@@ -106,7 +126,7 @@
                 <span class="text-orange-brand uppercase">MÃO NA ROTA.</span>
             </h1>
             
-            <!-- 👉 SUBTÍTULO OTIMIZADO: Ajustado tamanho, espaçamento e união de palavras para evitar viúvas -->
+            <!-- Subtítulo formatado para evitar palavras viúvas -->
             <p class="text-lg md:text-2xl text-gray-100 max-w-4xl mx-auto font-light leading-relaxed">
                 A contabilidade descomplicada na palma da mão do&nbsp;caminhoneiro. <br class="hidden md:block">
                 Regularize seu MEI e emita NF pelo WhatsApp em&nbsp;segundos.
@@ -288,84 +308,267 @@
     </section>
 
     <!-- ==========================================
-         SEÇÃO: FAQ COMPLETA (Sincronizada com DOCX)
+         👉 SEÇÃO: CENTRAL DE AJUDA & FAQ COMPLETA (Sincronizada e Categorizada)
          ========================================== -->
-    <section id="faq" class="py-20 bg-white px-4">
-        <div class="max-w-4xl mx-auto space-y-12">
-            <div class="text-center">
-                <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900">Perguntas Frequentes</h2>
-                <p class="text-gray-600 mt-4 text-lg">Tudo o que você precisa saber sobre suporte contábil no trecho.</p>
+    <section id="faq" class="py-20 bg-white px-4 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto space-y-12">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-orange-brand font-bold uppercase tracking-wider text-sm">Suporte no Trecho</span>
+                <h2 class="text-3xl md:text-5xl font-black text-gray-900">Como podemos ajudar você hoje?</h2>
+                <p class="text-gray-600 text-lg">Pesquise por termos ou selecione uma categoria para esclarecer as suas dúvidas.</p>
+                
+                <!-- Barra de Pesquisa Interativa -->
+                <div class="relative max-w-xl mx-auto mt-4">
+                    <input type="text" id="faq-search" oninput="filterFaqs()" placeholder="Digite sua dúvida aqui..." class="w-full pl-12 pr-4 py-4 rounded-xl bg-gray-50 text-gray-800 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg">
+                    <i class="fas fa-search absolute left-4 top-5.5 text-gray-400 text-lg"></i>
+                </div>
             </div>
 
-            <div class="space-y-4">
-                <!-- FAQ 1 -->
-                <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button class="w-full px-6 py-4 bg-gray-50 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-100 transition" onclick="toggleFaq(1)">
-                        <span>O que é a Mão na Rota? Ela é contabilidade online genérica?</span>
-                        <i id="icon-1" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
-                    </button>
-                    <div id="ans-1" class="hidden px-6 py-4 text-gray-600 leading-relaxed border-t border-gray-200 text-sm md:text-base">
-                        A Mão na Rota <strong>não é apenas contabilidade online</strong> ou uma startup genérica de aplicativos. Somos um ecossistema completo de apoio administrativo e suporte especializado a caminhoneiros e transportadores. Nossa equipe física atua há décadas no eixo Rio-São Paulo-Minas Gerais, aplicando tecnologias avançadas (como IA, sistemas em nuvem e criptografia) para simplificar a vida de quem transporta a riqueza do Brasil nas costas, garantindo suporte humano quando você precisar.
+            <div class="grid md:grid-cols-4 gap-8">
+                
+                <!-- Menu Lateral de Categorias (Desktop) -->
+                <aside class="md:col-span-1 space-y-3">
+                    <h3 class="font-bold text-gray-500 uppercase tracking-widest text-xs px-3">Categorias</h3>
+                    <div class="flex flex-row md:flex-col overflow-x-auto md:overflow-visible gap-2 pb-3 md:pb-0">
+                        <button onclick="switchCategory('institucional')" id="tab-institucional" class="category-tab active whitespace-nowrap text-left px-4 py-3 rounded-xl border border-gray-200 font-semibold text-sm w-full">
+                            <i class="fas fa-building mr-2"></i> Institucional & Serviços
+                        </button>
+                        <button onclick="switchCategory('abertura')" id="tab-abertura" class="category-tab whitespace-nowrap text-left px-4 py-3 rounded-xl border border-gray-200 font-semibold text-sm w-full">
+                            <i class="fas fa-folder-plus mr-2"></i> Abrir MEI Caminhoneiro
+                        </button>
+                        <button onclick="switchCategory('troca')" id="tab-troca" class="category-tab whitespace-nowrap text-left px-4 py-3 rounded-xl border border-gray-200 font-semibold text-sm w-full">
+                            <i class="fas fa-sync-alt mr-2"></i> Trocar de Contador
+                        </button>
+                        <button onclick="switchCategory('certificado')" id="tab-certificado" class="category-tab whitespace-nowrap text-left px-4 py-3 rounded-xl border border-gray-200 font-semibold text-sm w-full">
+                            <i class="fas fa-key mr-2"></i> Certificado Digital & LGPD
+                        </button>
                     </div>
-                </div>
+                </aside>
 
-                <!-- FAQ 2 -->
-                <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button class="w-full px-6 py-4 bg-gray-50 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-100 transition" onclick="toggleFaq(2)">
-                        <span>Ainda não sou MEI Caminhoneiro, vocês realizam a abertura?</span>
-                        <i id="icon-2" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
-                    </button>
-                    <div id="ans-2" class="hidden px-6 py-4 text-gray-600 leading-relaxed border-t border-gray-200 text-sm md:text-base">
-                        Sim, com certeza! Acreditamos tanto no potencial do transportador que <strong>oferecemos a abertura da sua empresa de forma gratuita</strong> (você só paga as taxas obrigatórias de registro do governo se houver). Cuidamos de toda a estruturação burocrática para garantir que seu CNPJ esteja pronto para rodar, emitir Notas Fiscais e fechar fretes direto com as maiores empresas e embarcadoras.
+                <!-- Seção de Perguntas e Respostas -->
+                <div class="md:col-span-3 space-y-6">
+                    
+                    <!-- Mensagem caso a busca não retorne resultados -->
+                    <div id="no-results" class="hidden text-center py-12 bg-gray-50 rounded-2xl border border-gray-100">
+                        <i class="fas fa-search text-gray-300 text-5xl mb-4"></i>
+                        <h4 class="text-xl font-bold">Nenhuma pergunta encontrada</h4>
+                        <p class="text-gray-500 mt-2">Tente buscar por termos mais genéricos ou fale diretamente conosco no WhatsApp.</p>
                     </div>
-                </div>
 
-                <!-- FAQ 3 -->
-                <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button class="w-full px-6 py-4 bg-gray-50 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-100 transition" onclick="toggleFaq(3)">
-                        <span>Já tenho contador ou sou MEI. Como funciona o processo de migração?</span>
-                        <i id="icon-3" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
-                    </button>
-                    <div id="ans-3" class="hidden px-6 py-4 text-gray-600 leading-relaxed border-t border-gray-200 text-sm md:text-base">
-                        Trocar de contador é muito fácil e não interrompe suas operações. Você só precisa fornecer dados básicos (CNPJ, CPF do responsável e e-mail). Nosso time de especialistas entra em contato direto com seu contador antigo e solicita todo o histórico da sua PJ, de forma totalmente amigável e sem complicação.
-                    </div>
-                </div>
+                    <!-- CATEGORIA: INSTITUCIONAL & SERVIÇOS -->
+                    <div id="cat-institucional" class="faq-category space-y-4">
+                        <h2 class="text-2xl font-black text-gray-900 border-b pb-2">Institucional & Serviços</h2>
+                        
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="o que é mao na rota contabilidade especializada apoio suporte">
+                            <button onclick="toggleFaq('inst-1')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>O que é a Mão na Rota? Ela é contabilidade online genérica?</span>
+                                <i id="icon-inst-1" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-inst-1" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-3 text-sm md:text-base">
+                                <p>A <strong>Mão na Rota</strong> não é contabilidade online tradicional. São serviços de apoio, suporte contábil e administrativo a caminhoneiros e transportadores.</p>
+                                <p>Não somos apenas um escritório de contabilidade convencional que se atualizou ou uma "startup" de tecnologia. Nós não facilitamos apenas a burocracia, <strong>simplificamos a vida de quem transporta</strong>.</p>
+                                <p>Nossa equipe física atua há décadas no eixo Rio-São Paulo-Minas Gerais (principal eixo logístico do país), aplicando tecnologias avançadas para servir quem precisa de segurança jurídica e tranquilidade nas estradas.</p>
+                            </div>
+                        </div>
 
-                <!-- FAQ 4 -->
-                <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button class="w-full px-6 py-4 bg-gray-50 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-100 transition" onclick="toggleFaq(4)">
-                        <span>Por que preciso de Certificado Digital e o que é o modelo A1?</span>
-                        <i id="icon-4" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
-                    </button>
-                    <div id="ans-4" class="hidden px-6 py-4 text-gray-600 leading-relaxed border-t border-gray-200 text-sm md:text-base">
-                        O Certificado Digital A1 é como sua assinatura eletrônica segura, vital para a emissão legal de NF-e, CT-e e acesso à Receita Federal (e-CAC). Clientes Mão na Rota têm uma enorme vantagem: <strong>nós oferecemos a renovação anual do certificado digital A1 por nossa conta de forma totalmente gratuita</strong>. Nós agendamos a validação com você, poupando essa despesa recorrente.
-                    </div>
-                </div>
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="por que segmento transporte precisa contabilidade especializada complexidade burocracia tributaria">
+                            <button onclick="toggleFaq('inst-2')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>Porque o segmento de transporte e os caminhoneiros precisam de um suporte especializado?</span>
+                                <i id="icon-inst-2" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-inst-2" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-3 text-sm md:text-base">
+                                <p>A dificuldade não é culpa do pequeno transportador, mas decorre da extrema complexidade e da exaustiva burocracia do sistema tributário e governamental brasileiro.</p>
+                                <p>Sem formação técnica contábil, e trabalhando sob jornadas exaustivas nas estradas, cumprir as obrigações acessórias em momentos de descanso é um grande fardo. É nessa hora que você conta com a assessoria especializada da Mão na Rota para blindar seu negócio e evitar prejuízos.</p>
+                            </div>
+                        </div>
 
-                <!-- FAQ 5 -->
-                <div class="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button class="w-full px-6 py-4 bg-gray-50 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-100 transition" onclick="toggleFaq(5)">
-                        <span>A LGPD protege meus dados e certificados compartilhados?</span>
-                        <i id="icon-5" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
-                    </button>
-                    <div id="ans-5" class="hidden px-6 py-4 text-gray-600 leading-relaxed border-t border-gray-200 text-sm md:text-base">
-                        Absolutamente. Seguimos normas rígidas em total conformidade com a Lei Geral de Proteção de Dados (LGPD). Cada ação usando o certificado digital A1 gera um registro criptografado de auditoria com rastreabilidade detalhada de data, hora e responsável, impedindo o uso indevido e garantindo segurança jurídica no contrato de prestação de serviço.
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="dificuldades caminhoneiro entender obrigações fiscais labirinto tributario burocracia retencoes gestao pj irpf">
+                            <button onclick="toggleFaq('inst-3')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>Por que há tanta dificuldade em manter as obrigações fiscais e administrativas regulares?</span>
+                                <i id="icon-inst-3" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-inst-3" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-4 text-sm md:text-base">
+                                <p>Existem alguns fatores críticos que dificultam a compreensão e colocam o transportador sob risco de multas pesadas e bloqueio de faturamento:</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li><strong>Labirinto Tributário:</strong> Impostos federais, estaduais e municipais (INSS, SEST/SENAT, ICMS, IRPF) com regras próprias e mudanças previstas para a Reforma Tributária em 2027.</li>
+                                    <li><strong>Burocracia Logística:</strong> Emissão de CIOT, MDF-e, CT-e e inscrição sempre regularizada no RNTRC (ANTT).</li>
+                                    <li><strong>Retenções na Fonte Confusas:</strong> Para quem é empresa ME, tomadoras retêm impostos diretamente na fonte, o que exige acompanhamento sistemático para recuperação de créditos.</li>
+                                    <li><strong>Falta de Controle de Caixa:</strong> Misturar as despesas pessoais com o faturamento da Pessoa Jurídica (PJ) impede a visão dos lucros reais e o abatimento de custos de manutenção e diesel.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="como funciona suporte atendimento ia humana real dias horas whatsapp telefone">
+                            <button onclick="toggleFaq('inst-4')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>Meu atendimento será feito por computadores ou pessoas reais?</span>
+                                <i id="icon-inst-4" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-inst-4" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-3 text-sm md:text-base">
+                                <p><strong>Utilizamos muita tecnologia, mas com atendimento 100% humanizado e supervisionado.</strong> Usamos IA para agilizar processos repetitivos e buscas, mas todos os procedimentos são acompanhados e revisados por contadores e técnicos reais.</p>
+                                <p>Dispomos de múltiplos canais: WhatsApp 24h, ligações telefónicas em dias úteis (ou por agendamento), e-mail e videoconferências rápidas via Google Meet sempre que você precisar de suporte técnico aprofundado.</p>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- CATEGORIA: ABERTURA DE EMPRESA -->
+                    <div id="cat-abertura" class="faq-category hidden space-y-4">
+                        <h2 class="text-2xl font-black text-gray-900 border-b pb-2">Abrir MEI Caminhoneiro</h2>
+                        
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="o que e mei caminhoneiro transportador autônomo de carga tac formalizar">
+                            <button onclick="toggleFaq('aber-1')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>Por que abrir o MEI Caminhoneiro? Quais são os benefícios?</span>
+                                <i id="icon-aber-1" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-aber-1" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-3 text-sm md:text-base">
+                                <p>Formalizar a sua atividade como MEI Caminhoneiro é a maneira mais econômica de passar de motorista autônomo para Pessoa Jurídica (PJ).</p>
+                                <p>Como PJ, você tem acesso facilitado a direitos previdenciários (aposentadoria, auxílios) e, crucialmente, <strong>emite notas fiscais eletrônicas de transporte</strong> para negociar fretes diretamente com grandes embarcadoras, indústrias, agronegócio e varejistas que exigem CNPJ.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="passo a passo abrir cnpj mei caminhoneiro etapas taxas registro">
+                            <button onclick="toggleFaq('aber-2')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>Como funciona o processo de abertura de CNPJ na Mão na Rota?</span>
+                                <i id="icon-aber-2" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-aber-2" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed text-sm md:text-base">
+                                <p class="mb-4">Nosso processo é estruturado e sem complicações em 4 etapas:</p>
+                                <div class="space-y-4">
+                                    <div class="flex items-start gap-3">
+                                        <span class="bg-orange-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-1">1</span>
+                                        <p><strong>Reunião de Alinhamento:</strong> Você se cadastra no site e agendamos uma conversa (WhatsApp, telefone ou Meet) para orientar os primeiros passos burocráticos.</p>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <span class="bg-orange-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-1">2</span>
+                                        <p><strong>Preparação:</strong> Avaliamos as especificações técnicas da sua operação e preparamos toda a documentação legal.</p>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <span class="bg-orange-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-1">3</span>
+                                        <p><strong>Taxas de Registro:</strong> Nossa equipe orienta no preenchimento e pagamento das guias oficiais exigidas pelo Estado.</p>
+                                    </div>
+                                    <div class="flex items-start gap-3">
+                                        <span class="bg-orange-500 text-white w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0 mt-1">4</span>
+                                        <p><strong>Ativação:</strong> Cuidamos da emissão do CNPJ e notificamos você quando puder iniciar a emissão de notas e CT-es eletrônicos!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="migrar mei para me faturamento limite estouro teto contratação desenquadramento">
+                            <button onclick="toggleFaq('aber-3')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>Quando minha empresa precisa deixar de ser MEI e migrar para ME?</span>
+                                <i id="icon-aber-3" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-aber-3" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-3 text-sm md:text-base">
+                                <p>Os motivos mais comuns são faturamento acima do limite do MEI Caminhoneiro (atualmente R$ 251.600,00 por ano), necessidade de contratação de mais de 1 colaborador ou exigências cadastrais de embarcadoras maiores.</p>
+                                <p>Se for o seu caso, nossos especialistas realizam o processo de desenquadramento do seu MEI para ME de forma <strong>totalmente gratuita</strong>, auxiliando no planejamento fiscal ideal para proteger as suas margens de lucro.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORIA: TROCAR DE CONTADOR -->
+                    <div id="cat-troca" class="faq-category hidden space-y-4">
+                        <h2 class="text-2xl font-black text-gray-900 border-b pb-2">Trocar de Contador</h2>
+                        
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="e facil trocar de contador rescindir migrar migracao">
+                            <button onclick="toggleFaq('troc-1')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>Como funciona a transição para a Mão na Rota? É seguro?</span>
+                                <i id="icon-troc-1" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-troc-1" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-3 text-sm md:text-base">
+                                <p><strong>Sim, é totalmente simples e seguro.</strong> A transição não interrompe as suas atividades contínuas nas estradas e as emissões de Notas Fiscais.</p>
+                                <p>Você realiza o cadastro em nosso site, agendamos uma reunião rápida de início e nosso time de migração assume todo o processo burocrático, entrando em contato direto com o seu contador antigo para solicitar a documentação e histórico da empresa sem atritos.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="multas taxas quebra contrato fidelidade rescisao aviso previo">
+                            <button onclick="toggleFaq('troc-2')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-100 transition">
+                                <span>Preciso pagar multa ou taxas ao trocar de contador?</span>
+                                <i id="icon-troc-2" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-troc-2" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-3 text-sm md:text-base">
+                                <p>A cobrança de eventuais multas dependerá do contrato assinado com o seu antigo escritório. Algumas situações envolvem multas rescisórias por quebra de fidelidade ou exigência de aviso prévio (de 30 a 60 dias).</p>
+                                <p>Contudo, lembramos que <strong>o antigo escritório não pode reter seus documentos para forçar o pagamento de taxas ou cobranças em aberto</strong>. Reter documentação fiscal fere o código de ética profissional e sujeita o contabilista a sanções junto ao CRC.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="quais documentos preciso enviar migrar historico CCMEI Balanco">
+                            <button onclick="toggleFaq('troc-3')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>Quais documentos são exigidos para migrar a contabilidade?</span>
+                                <i id="icon-troc-3" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-troc-3" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-3 text-sm md:text-base">
+                                <p>Não há complicações: basta nos fornecer o número do seu CNPJ, CPF do responsável, nome completo, e-mail e telefone de contato.</p>
+                                <p>Nossa equipe técnica faz todo o acompanhamento com o antigo contador para puxar o histórico da empresa: Certificado Digital (A1), Certificado de MEI (CCMEI) ou Contrato Social, balancetes contábeis e guias de impostos pagas recentemente.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORIA: CERTIFICADO DIGITAL & LGPD -->
+                    <div id="cat-certificado" class="faq-category hidden space-y-4">
+                        <h2 class="text-2xl font-black text-gray-900 border-b pb-2">Certificado Digital & LGPD</h2>
+                        
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="o que e certificado digital assinatura virtual ecnpj modelo A1">
+                            <button onclick="toggleFaq('cert-1')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>O que é o Certificado Digital? Caminhoneiros e TACs precisam dele?</span>
+                                <i id="icon-cert-1" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-cert-1" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-3 text-sm md:text-base">
+                                <p>O Certificado Digital funciona como a assinatura eletrônica da sua empresa com validade jurídica garantida por lei (ICP-Brasil). Ele serve para atestar transações seguras no meio digital.</p>
+                                <p>Para o MEI Caminhoneiro, ele é **vital para a emissão de notas fiscais eletrônicas (NF-e) e Conhecimentos de Transporte Eletrónicos (CT-e)**, transmissão de declarações federais e assinatura de contratos à distância, evitando deslocamentos burocráticos desnecessários.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="por que o contador precisa do certificado digital e-cac portal receita">
+                            <button onclick="toggleFaq('cert-2')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>Por que o meu contador precisa do meu Certificado Digital?</span>
+                                <i id="icon-cert-2" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-cert-2" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-3 text-sm md:text-base">
+                                <p>Sua equipe contábil utilizará o certificado digital (e-CNPJ A1) para acessar os portais federais (e-CAC da Receita), municipais e estaduais para enviar obrigações acessórias obrigatórias sem erros cadastrais, monitorar pendências e validar notas geradas automaticamente pelo sistema contábil em seu nome.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="como a mao na rota protege meus dados seguranca LGPD procuracao criptografia">
+                            <button onclick="toggleFaq('cert-3')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>Como a Mão na Rota garante o bom uso e segurança dos meus dados e do meu Certificado?</span>
+                                <i id="icon-cert-3" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-cert-3" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-4 text-sm md:text-base">
+                                <p>Garantimos a máxima segurança em conformidade rígida com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018):</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li><strong>Certificado Dedicado:</strong> Configuramos um Certificado Digital A1 de uso exclusivo para rotinas contábeis básicas, isolando-o de qualquer uso inadequado.</li>
+                                    <li><strong>Rastreabilidade de Auditoria:</strong> Cada ação executada com o certificado gera um log criptografado inviolável com data, hora e identidade do operador envolvido.</li>
+                                    <li><strong>Contratos com Confidencialidade:</strong> Nossos termos prevêm responsabilidade civil, funcional e técnica rigorosa com base no Conselho Federal de Contabilidade (CFC).</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="faq-item bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden" data-search="renovacao anual do certificado digital e-cnpj modelo A1 custos de graca">
+                            <button onclick="toggleFaq('cert-4')" class="w-full px-6 py-4 flex justify-between items-center text-left font-bold text-gray-900 hover:bg-gray-50 transition">
+                                <span>A Mão na Rota oferece a renovação do meu certificado digital de graça?</span>
+                                <i id="icon-cert-4" class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                            </button>
+                            <div id="ans-cert-4" class="hidden px-6 py-5 text-gray-600 border-t leading-relaxed space-y-3 text-sm md:text-base">
+                                <p><strong>Sim! Anualmente o seu Certificado Digital e-CNPJ A1 é renovado de forma 100% gratuita por nossa conta.</strong></p>
+                                <p>Poupamos essa despesa recorrente dos nossos parceiros, prestando todo o suporte e agendamento de verificação para que você não precise de se preocupar com as datas de expiração.</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
+
         </div>
     </section>
 
     <!-- ==========================================
-         RODAPÉ
+         RODAPÉ (Logótipo Negativo Oficial)
          ========================================== -->
     <footer class="bg-gray-900 text-white py-16 px-4">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
             <div class="text-center md:text-left text-white" id="footer-logo-container">
-                <!-- =========================================================================
-                   👉 LOGÓTIPO NEGATIVO NO RODAPÉ COM CONTROLO DE FALHAS
-                   ========================================================================= -->
                 <img src="logo-negativo.png" 
                      id="footer-logo"
                      alt="Mão na Rota" 
@@ -374,7 +577,7 @@
                 <p class="text-gray-400 text-lg font-medium">Agilidade • Confiança • Liberdade</p>
             </div>
             <div class="text-center md:text-right space-y-2">
-                <p class="text-gray-500">© 2026 Mão na Rota Contabilidade.</p>
+                <p class="text-gray-500">© 2026 Mão na Rota Contabilidade. Todos os direitos reservados.</p>
                 <div class="flex gap-4 justify-center md:justify-end text-gray-400 text-sm">
                     <a href="#" class="hover:text-orange-brand transition">Termos de Uso</a>
                     <a href="#" class="hover:text-orange-brand transition">Privacidade</a>
@@ -384,30 +587,27 @@
     </footer>
 
     <!-- ==========================================
-         BOTÃO FLUTUANTE DO WHATSAPP
+         👉 BOTÃO FLUTUANTE DO WHATSAPP (CORRIGIDO E SEGURO NO CANTO DIREITO)
          ========================================== -->
-    <a href="https://wa.me/5512999999999?text=Quero falar sobre a contabilidade da minha empresa." class="floating-wa bg-green-500 text-white w-20 h-20 rounded-full flex items-center justify-center text-4xl shadow-2xl hover:scale-110 transition duration-300">
+    <a href="https://wa.me/5512999999999?text=Quero falar sobre a contabilidade da minha empresa." 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="whatsapp-fixed bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-2xl transition duration-300 transform hover:scale-110">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- ==========================================
-         SISTEMA INTELIGENTE DE RESOLUÇÃO DE IMAGENS (JS)
-         Evita loops infinitos e garante fallbacks se o GitHub ou servidor local falhar.
+         SISTEMA INTELIGENTE DE RESOLUÇÃO DE IMAGENS E FAQ (JS)
+         Evita loops infinitos e garante os fallbacks das suas imagens do GitHub.
          ========================================== -->
     <script>
         // Função para tratar o erro de carregamento do logo principal
         function handleLogoError(img) {
-            // Desativa o manipulador de erro para evitar loops infinitos
             img.onerror = null; 
-            
-            // Tenta o plano de contingência (GitHub)
             const githubUrl = "https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/logo.png";
-            
-            // Cria uma verificação rápida antes de aplicar o link externo
             if (img.src !== githubUrl) {
                 img.src = githubUrl;
             } else {
-                // Se o GitHub também falhar, renderiza texto premium em vetor para nunca quebrar a interface
                 replaceLogoWithSVG();
             }
         }
@@ -436,11 +636,24 @@
             }
         }
 
+        function replaceFooterLogoWithText() {
+            const container = document.getElementById('footer-logo-container');
+            const logoImg = document.getElementById('footer-logo');
+            if (container && logoImg) {
+                logoImg.remove();
+                const fallbackDiv = document.createElement('div');
+                fallbackDiv.className = "text-left mb-6";
+                fallbackDiv.innerHTML = `
+                    <span class="text-3xl font-black text-white uppercase tracking-tight">Mão na <span class="text-orange-500">Rota</span></span>
+                `;
+                container.prepend(fallbackDiv);
+            }
+        }
+
         // Pré-carrega a imagem de background e ativa fallback se falhar
         const bgImg = new Image();
         bgImg.src = 'caminhoneiro.png';
         bgImg.onerror = function() {
-            // Se falhar local, aplica o GitHub como contingência suave
             const heroSection = document.getElementById('hero-section');
             if (heroSection) {
                 heroSection.classList.add('hero-gradient-fallback');
@@ -458,6 +671,91 @@
             } else {
                 answer.classList.add('hidden');
                 icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Alternar as categorias de perguntas
+        function switchCategory(catId) {
+            // Remove a classe ativa de todas as abas
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Oculta todas as categorias de FAQ
+            document.querySelectorAll('.faq-category').forEach(cat => {
+                cat.classList.add('hidden');
+            });
+
+            // Ativa o botão selecionado
+            const activeTab = document.getElementById(`tab-${catId}`);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+            
+            // Mostra a categoria correspondente
+            const activeCat = document.getElementById(`cat-${catId}`);
+            if (activeCat) {
+                activeCat.classList.remove('hidden');
+            }
+            
+            // Limpa o campo de busca ao trocar de aba para evitar conflitos visuais
+            document.getElementById('faq-search').value = '';
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('hidden');
+            });
+            document.getElementById('no-results').classList.add('hidden');
+        }
+
+        // Motor de busca em tempo real com filtragem inteligente
+        function filterFaqs() {
+            const query = document.getElementById('faq-search').value.toLowerCase().trim();
+            const faqItems = document.querySelectorAll('.faq-item');
+            const noResults = document.getElementById('no-results');
+            
+            let visibleCount = 0;
+
+            // Se o usuário estiver pesquisando, exibimos todas as categorias para buscar no site inteiro
+            if (query.length > 0) {
+                document.querySelectorAll('.faq-category').forEach(cat => {
+                    cat.classList.remove('hidden');
+                });
+                document.querySelectorAll('.category-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+            } else {
+                // Se a busca for limpa, redefinimos para a primeira aba ativa
+                switchCategory('institucional');
+                return;
+            }
+
+            // Filtragem individual dos itens por palavra-chave
+            faqItems.forEach(item => {
+                const searchKeywords = item.getAttribute('data-search').toLowerCase();
+                const questionText = item.querySelector('button span').innerText.toLowerCase();
+                const answerText = item.querySelector('div').innerText.toLowerCase();
+
+                if (searchKeywords.includes(query) || questionText.includes(query) || answerText.includes(query)) {
+                    item.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            // Oculta as categorias que ficaram sem nenhuma pergunta correspondente
+            document.querySelectorAll('.faq-category').forEach(cat => {
+                const visibleItems = cat.querySelectorAll('.faq-item:not(.hidden)');
+                if (visibleItems.length === 0) {
+                    cat.classList.add('hidden');
+                } else {
+                    cat.classList.remove('hidden');
+                }
+            });
+
+            // Mostra tela de "Sem Resultados" se nada for correspondido
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
             }
         }
     </script>
