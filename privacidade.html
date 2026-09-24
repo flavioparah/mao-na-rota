@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade (LGPD) - Mão na Rota</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-orange: #F37021;
+            --brand-dark: #1A1A1A;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .bg-orange-brand { background-color: var(--brand-orange); }
+        .text-orange-brand { color: var(--brand-orange); }
+        .border-orange-brand { border-color: var(--brand-orange); }
+
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 50;
+        }
+
+        .toc a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            color: #4b5563;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        .toc a:hover {
+            background-color: #FFF3EC;
+            color: var(--brand-orange);
+        }
+
+        .policy-section h2 {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen relative">
+
+    <!-- ==========================================
+         CABEÇALHO / NAVEGAÇÃO
+         ========================================== -->
+    <nav class="sticky top-0 z-40 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="../index.html" class="flex items-center gap-2" id="logo-container">
+                <img src="../logo.png"
+                     alt="Logo Mão na Rota"
+                     class="h-14 w-auto object-contain max-w-[200px] block"
+                     id="main-logo"
+                     onerror="handleLogoError(this)">
+            </a>
+            <a href="../index.html" class="text-sm font-semibold uppercase tracking-wider text-gray-600 hover:text-orange-brand transition">
+                <i class="fas fa-arrow-left mr-2"></i>Voltar ao site
+            </a>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+         CABEÇALHO DA PÁGINA
+         ========================================== -->
+    <section class="bg-gray-900 text-white py-16 px-4">
+        <div class="max-w-5xl mx-auto space-y-4 text-center">
+            <span class="text-orange-brand font-bold uppercase tracking-wider text-sm">
+                <i class="fas fa-shield-alt mr-2"></i>Conformidade com a LGPD
+            </span>
+            <h1 class="text-4xl md:text-5xl font-black leading-tight">Política de Privacidade</h1>
+            <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+                Como a Mão na Rota Contabilidade coleta, usa, armazena e protege os seus dados pessoais, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).
+            </p>
+            <p class="text-gray-500 text-sm">Última atualização: 24 de setembro de 2026</p>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CONTEÚDO
+         ========================================== -->
+    <section class="py-16 px-4 bg-white">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+
+            <!-- Índice lateral -->
+            <aside class="md:col-span-1">
+                <div class="sticky top-24 space-y-1 toc">
+                    <h3 class="font-bold text-gray-500 uppercase tracking-widest text-xs px-3 mb-2">Nesta página</h3>
+                    <a href="#introducao">1. Introdução</a>
+                    <a href="#controlador">2. Quem é o Controlador</a>
+                    <a href="#dados-coletados">3. Dados que Coletamos</a>
+                    <a href="#finalidades">4. Para que Usamos seus Dados</a>
+                    <a href="#base-legal">5. Base Legal</a>
+                    <a href="#compartilhamento">6. Compartilhamento de Dados</a>
+                    <a href="#certificado">7. Certificado Digital</a>
+                    <a href="#retencao">8. Retenção de Dados</a>
+                    <a href="#seguranca">9. Segurança da Informação</a>
+                    <a href="#cookies">10. Cookies</a>
+                    <a href="#direitos">11. Seus Direitos (Titular)</a>
+                    <a href="#criancas">12. Crianças e Adolescentes</a>
+                    <a href="#alteracoes">13. Alterações desta Política</a>
+                    <a href="#contato">14. Fale com o DPO</a>
+                </div>
+            </aside>
+
+            <!-- Texto da política -->
+            <div class="md:col-span-3 space-y-12 policy-section text-gray-700 leading-relaxed">
+
+                <div id="introducao" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">1. Introdução</h2>
+                    <p>A <strong>Mão na Rota Contabilidade</strong> ("Mão na Rota", "nós") respeita a sua privacidade e está comprometida em proteger os dados pessoais de caminhoneiros, transportadores autônomos de carga (TACs), transportadoras e demais clientes e visitantes ("você", "titular").</p>
+                    <p>Esta Política de Privacidade explica, de forma clara, como coletamos, usamos, armazenamos, compartilhamos e protegemos os seus dados pessoais, em conformidade com a <strong>Lei Geral de Proteção de Dados Pessoais (LGPD – Lei nº 13.709/2018)</strong> e demais normas aplicáveis, incluindo as regras específicas para o uso de certificados digitais ICP-Brasil.</p>
+                    <p>Ao utilizar o nosso site, contratar os nossos serviços contábeis ou entrar em contato pelo WhatsApp, telefone ou e-mail, você concorda com as práticas descritas nesta Política.</p>
+                </div>
+
+                <div id="controlador" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">2. Quem é o Controlador dos Dados</h2>
+                    <p>A Mão na Rota Contabilidade atua como <strong>Controladora</strong> dos dados pessoais tratados por meio deste site e dos canais de atendimento (WhatsApp, telefone, e-mail e videoconferência), sendo responsável por decidir as finalidades e a forma do tratamento dos seus dados.</p>
+                    <p>Em alguns casos, quando processamos serviços contábeis em nome de terceiros parceiros (por exemplo, prefeituras, Receita Federal ou plataformas de emissão fiscal), atuamos como <strong>Operadora</strong>, seguindo instruções do titular ou de órgãos públicos.</p>
+                </div>
+
+                <div id="dados-coletados" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">3. Dados que Coletamos</h2>
+                    <p>Coletamos apenas os dados necessários para prestar os nossos serviços de apoio contábil e administrativo. Podem incluir:</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Dados de identificação:</strong> nome completo, CPF, RG, data de nascimento, estado civil.</li>
+                        <li><strong>Dados de contato:</strong> telefone, WhatsApp, e-mail e endereço.</li>
+                        <li><strong>Dados empresariais:</strong> CNPJ, razão social, CCMEI, Contrato Social, inscrição estadual e municipal, RNTRC/ANTT.</li>
+                        <li><strong>Dados fiscais e financeiros:</strong> notas fiscais, CT-e, MDF-e, CIOT, guias de impostos, balancetes, faturamento e extratos necessários à escrituração contábil.</li>
+                        <li><strong>Certificado Digital:</strong> arquivo e senha do e-CNPJ/e-CPF modelo A1, quando fornecido para uso exclusivo em rotinas contábeis autorizadas.</li>
+                        <li><strong>Dados de navegação:</strong> endereço IP, tipo de navegador e páginas visitadas, coletados de forma automática ao acessar o site.</li>
+                        <li><strong>Registos de atendimento:</strong> conversas de WhatsApp, e-mails e chamadas realizadas com a nossa equipe ou com o assistente de IA.</li>
+                    </ul>
+                </div>
+
+                <div id="finalidades" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">4. Para que Usamos os seus Dados</h2>
+                    <p>Utilizamos os seus dados pessoais para as seguintes finalidades:</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Abertura, regularização e desenquadramento de MEI/ME Caminhoneiro;</li>
+                        <li>Emissão de notas fiscais eletrónicas (NF-e), CT-e, MDF-e e CIOT;</li>
+                        <li>Escrituração contábil, apuração de impostos e distribuição de lucros isentos;</li>
+                        <li>Envio de obrigações acessórias aos órgãos federais, estaduais e municipais (e-CAC, Receita Federal, Prefeituras);</li>
+                        <li>Prestação de suporte técnico via WhatsApp, telefone, e-mail e videoconferência, incluindo atendimento automatizado por inteligência artificial;</li>
+                        <li>Gestão da renovação anual do Certificado Digital;</li>
+                        <li>Divulgação de caminhoneiros regularizados na "Lista de Confiança" a transportadoras parceiras, mediante consentimento prévio do motorista;</li>
+                        <li>Cumprimento de obrigações legais e regulatórias impostas por órgãos como Receita Federal, ANTT e Conselho Federal de Contabilidade (CFC);</li>
+                        <li>Melhoria contínua dos nossos serviços e comunicação comercial, quando autorizado.</li>
+                    </ul>
+                </div>
+
+                <div id="base-legal" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">5. Base Legal para o Tratamento</h2>
+                    <p>Tratamos os seus dados com fundamento nas seguintes bases legais previstas na LGPD (art. 7º):</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Execução de contrato:</strong> para prestar os serviços contábeis contratados;</li>
+                        <li><strong>Cumprimento de obrigação legal ou regulatória:</strong> para atender exigências fiscais, previdenciárias e trabalhistas;</li>
+                        <li><strong>Consentimento:</strong> para inclusão na Lista de Confiança, comunicações de marketing e casos específicos indicados no momento da coleta;</li>
+                        <li><strong>Legítimo interesse:</strong> para melhoria dos serviços, segurança da informação e prevenção a fraudes, sempre respeitando os seus direitos e expectativas.</li>
+                    </ul>
+                </div>
+
+                <div id="compartilhamento" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">6. Compartilhamento de Dados</h2>
+                    <p>Os seus dados podem ser compartilhados, na medida do necessário, com:</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Órgãos públicos:</strong> Receita Federal, Prefeituras, Secretarias da Fazenda, ANTT/RNTRC e demais entes fiscalizadores, quando exigido por lei;</li>
+                        <li><strong>Prestadores de tecnologia:</strong> sistemas de emissão fiscal, provedores de e-mail e mensageria (como o WhatsApp Business), sob contratos de confidencialidade;</li>
+                        <li><strong>Transportadoras parceiras:</strong> apenas dados de regularidade cadastral, e apenas se você consentir com a inclusão na "Lista de Confiança";</li>
+                        <li><strong>Autoridades competentes:</strong> mediante ordem judicial, requisição legal ou para o exercício regular de direitos.</li>
+                    </ul>
+                    <p>Não vendemos os seus dados pessoais a terceiros.</p>
+                </div>
+
+                <div id="certificado" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">7. Tratamento do Certificado Digital</h2>
+                    <p>Quando você compartilha o seu Certificado Digital A1 conosco, ele é configurado para <strong>uso exclusivo em rotinas contábeis autorizadas</strong> (emissão fiscal, transmissão de obrigações acessórias e consultas em portais oficiais).</p>
+                    <p>Cada acesso realizado com o certificado é registado em <strong>log de auditoria</strong>, com data, hora e identificação do operador responsável, garantindo rastreabilidade completa e conformidade com o Conselho Federal de Contabilidade (CFC).</p>
+                </div>
+
+                <div id="retencao" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">8. Retenção de Dados</h2>
+                    <p>Mantemos os seus dados pelo tempo necessário para cumprir as finalidades descritas nesta Política, incluindo os prazos legais de guarda de documentos fiscais e contábeis exigidos pela legislação brasileira (em geral, cinco anos ou mais, conforme o tipo de documento e a obrigação legal aplicável).</p>
+                    <p>Após esse período, os dados são eliminados de forma segura ou anonimizados, salvo quando a manutenção for necessária para cumprimento de obrigação legal ou defesa em processos administrativos ou judiciais.</p>
+                </div>
+
+                <div id="seguranca" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">9. Segurança da Informação</h2>
+                    <p>Adotamos medidas técnicas e administrativas para proteger os seus dados pessoais contra acessos não autorizados e situações de destruição, perda, alteração, comunicação ou difusão, tais como:</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Controle de acesso restrito às informações e ao Certificado Digital;</li>
+                        <li>Registos de auditoria criptografados para ações sensíveis;</li>
+                        <li>Contratos de confidencialidade com a nossa equipe técnica;</li>
+                        <li>Boas práticas de segurança nos sistemas e canais de comunicação utilizados.</li>
+                    </ul>
+                </div>
+
+                <div id="cookies" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">10. Cookies e Tecnologias de Navegação</h2>
+                    <p>O nosso site pode utilizar cookies e tecnologias semelhantes para melhorar a sua experiência de navegação, entender como o site é utilizado e otimizar o nosso conteúdo. Você pode configurar o seu navegador para bloquear ou apagar cookies a qualquer momento, ciente de que isso pode afetar algumas funcionalidades do site.</p>
+                </div>
+
+                <div id="direitos" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">11. Seus Direitos como Titular de Dados</h2>
+                    <p>Nos termos do artigo 18 da LGPD, você tem direito a:</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Confirmar a existência de tratamento dos seus dados;</li>
+                        <li>Acessar os seus dados pessoais;</li>
+                        <li>Corrigir dados incompletos, inexatos ou desatualizados;</li>
+                        <li>Solicitar a anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade com a lei;</li>
+                        <li>Solicitar a portabilidade dos dados a outro fornecedor de serviço;</li>
+                        <li>Revogar o consentimento e solicitar a exclusão dos dados tratados com base nele (por exemplo, saída da Lista de Confiança);</li>
+                        <li>Obter informação sobre com quem os seus dados foram compartilhados;</li>
+                        <li>Apresentar reclamação à Autoridade Nacional de Proteção de Dados (ANPD).</li>
+                    </ul>
+                    <p>Para exercer qualquer um desses direitos, entre em contato pelos canais indicados na seção 14.</p>
+                </div>
+
+                <div id="criancas" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">12. Crianças e Adolescentes</h2>
+                    <p>Os nossos serviços são destinados exclusivamente a maiores de 18 anos, empresários e profissionais do transporte de carga. Não coletamos intencionalmente dados de crianças ou adolescentes.</p>
+                </div>
+
+                <div id="alteracoes" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">13. Alterações desta Política</h2>
+                    <p>Esta Política de Privacidade pode ser atualizada periodicamente para refletir mudanças nas nossas práticas ou na legislação aplicável. A data da última atualização está indicada no topo desta página. Recomendamos a consulta periódica deste documento.</p>
+                </div>
+
+                <div id="contato" class="space-y-3">
+                    <h2 class="text-2xl md:text-3xl font-black text-gray-900 border-b pb-3">14. Fale com o nosso Encarregado de Dados (DPO)</h2>
+                    <p>Se tiver dúvidas sobre esta Política ou quiser exercer os seus direitos como titular de dados, entre em contacto com o nosso Encarregado de Proteção de Dados (DPO):</p>
+                    <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 space-y-2">
+                        <p><i class="fas fa-envelope text-orange-brand mr-2"></i> <strong>E-mail:</strong> privacidade@maonarota.com.br</p>
+                        <p><i class="fab fa-whatsapp text-orange-brand mr-2"></i> <strong>WhatsApp:</strong> (12) 99999-9999</p>
+                    </div>
+                    <p class="text-sm text-gray-500 italic">Substitua os dados de contacto acima pelos dados reais da sua empresa e do encarregado (DPO) responsável antes de publicar esta página.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         RODAPÉ
+         ========================================== -->
+    <footer class="bg-gray-900 text-white py-16 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-center md:text-left text-white">
+                <span class="text-3xl font-black text-white uppercase tracking-tight">Mão na <span class="text-orange-500">Rota</span></span>
+                <p class="text-gray-400 text-lg font-medium mt-2">Agilidade • Confiança • Liberdade</p>
+            </div>
+            <div class="text-center md:text-right space-y-2">
+                <p class="text-gray-500">© 2026 Mão na Rota Contabilidade. Todos os direitos reservados.</p>
+                <div class="flex gap-4 justify-center md:justify-end text-gray-400 text-sm">
+                    <a href="../index.html#faq" class="hover:text-orange-brand transition">Termos de Uso</a>
+                    <a href="/privacidade" class="hover:text-orange-brand transition">Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5512999999999?text=Tenho uma dúvida sobre a Política de Privacidade."
+       target="_blank"
+       rel="noopener noreferrer"
+       class="whatsapp-fixed bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-2xl transition duration-300 transform hover:scale-110">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function handleLogoError(img) {
+            img.onerror = null;
+            const githubUrl = "https://raw.githubusercontent.com/flavioparah/mao-na-rota/main/logo.png";
+            if (img.src !== githubUrl) {
+                img.src = githubUrl;
+            } else {
+                const container = document.getElementById('logo-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="flex items-center gap-2">
+                            <div class="bg-orange-500 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl">M</div>
+                            <span class="text-2xl font-black tracking-tight text-gray-900 uppercase">Mão na <span class="text-orange-500">Rota</span></span>
+                        </div>
+                    `;
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
